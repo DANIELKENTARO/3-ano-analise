@@ -17,3 +17,14 @@ li{
     text-decoration: none;
     color: black;
 }
+.logo{
+    margin-top:-4%;
+    margin-left: -2.4%;
+}
+#aa{
+    text-decoration: none;
+    color: black;
+}
+.hyperlinks{
+    position: fixed;
+}
