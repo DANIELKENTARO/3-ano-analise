@@ -2,9 +2,12 @@ body{
     margin: 0px;
 }
 header{
-    margin: 0%;
+    margin-top: -2%;
     background-color: rgb(192, 192, 192);
     color: rgb(0, 0, 0);
+}
+hr{
+    border: ;
 }
 li{
     display: inline;
@@ -17,14 +20,29 @@ li{
     text-decoration: none;
     color: black;
 }
-.logo{
-    margin-top:-4%;
-    margin-left: -2.4%;
+.imglogo{
+    position: relative;
+    margin-top: -8%;
+    margin-left: -2.5%;
 }
-#aa{
-    text-decoration: none;
-    color: black;
+.login{
+    position: relative;
+    margin-top: -5%;
+    margin-right: 1%;
 }
-.hyperlinks{
-    position: fixed;
+#hiperlink{
+    margin-top: -3%;
+    margin-left: 90%;
+    margin-right: 10%;
+    padding-right: 1%;
+    position: relative;
+}
+#criar{
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 999px;
+    margin-left: 93%;
+    margin-right: -1%;
+    margin-top: 4%;
+    padding-right: 1%;
+    position: relative;
 }
