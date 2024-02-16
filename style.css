@@ -1,6 +1,7 @@
 body{
-    margin: 0px;
+    margin: auto;
 }
+
 header{
     margin-top: -2%;
     background-color: rgb(192, 192, 192);
@@ -31,8 +32,9 @@ li{
     margin-right: 1%;
 }
 #hiperlink{
-    margin-top: -3%;
-    margin-left: 90%;
+    border: 1px rgb(192, 192, 192);
+    margin-top: -3.2%;
+    margin-left: 89%;
     margin-right: 10%;
     padding-right: 1%;
     position: relative;
