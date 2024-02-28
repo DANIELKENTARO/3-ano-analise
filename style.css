@@ -1,50 +1,74 @@
 body{
-    margin: auto;
-}
-
-header{
-    margin-top: -2%;
-    background-color: rgb(192, 192, 192);
-    color: rgb(0, 0, 0);
+    margin: 0;
+    background-image: linear-gradient(to top, rgb(24, 23, 24), rgb(32, 30, 39)) ;
+    color: rgb(20, 23, 26);
 }
 hr{
-    border: ;
+    margin: 0;
+}
+h1{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+button{
+    cursor: grab;
+    font-size: larger;
+    border: none;
+    color: rgb(175, 175, 175);
+    background: linear-gradient(rgba(63, 63, 63, 0.521), rgba(71, 66, 66, 0.582)) padding-box, linear-gradient(to right, #272020d5, #0b0c0cc7, #4d4444af) border-box;
+    border-radius: 8px;
+    size: 10%;
+}   
+img{
+    width: auto;
+    height: auto;
+}
+ul{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.menu{
+    display: flex;
+    background-image: linear-gradient( to left, rgb(8, 2, 2), rgb(12, 3, 3));
+    justify-content: space-between;
 }
 li{
-    display: inline;
-    
+    list-style: none;
+    flex-grow: 1;
 }
-.pagina{
-    font-family:'Times New Roman', Times, serif;
+a{
+    color: black;
+    text-decoration: none;
+    text-align: center;
 }
 #a{
-    text-decoration: none;
-    color: black;
+    order: 2;
 }
-.imglogo{
-    position: relative;
-    margin-top: -8%;
-    margin-left: -2.5%;
+#b{
+    order: 1;
+   text-align: center;
+   vertical-align: middle;
 }
-.login{
-    position: relative;
-    margin-top: -5%;
-    margin-right: 1%;
+footer{
+    margin-top: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    background-image: linear-gradient( to top, rgb(5, 5, 5),  rgb(58, 55, 55));
 }
-#hiperlink{
-    border: 1px rgb(192, 192, 192);
-    margin-top: -3.2%;
-    margin-left: 89%;
-    margin-right: 10%;
-    padding-right: 1%;
-    position: relative;
+#C{
+    margin: 0;
+    border:rgba(255, 255, 255, 0) solid;
 }
-#criar{
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 999px;
-    margin-left: 93%;
-    margin-right: -1%;
-    margin-top: 4%;
-    padding-right: 1%;
-    position: relative;
+h2{
+    margin: 0;
+    margin-bottom: 20vh;
+    font-size: medium;
+    color: rgb(15, 12, 12);
+}
+h4{
+    margin: 0;
+    margin-bottom: 20vh;
 }
