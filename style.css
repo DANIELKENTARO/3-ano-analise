@@ -1,7 +1,7 @@
 body{
     margin: 0;
     background-image: linear-gradient(to top, rgb(24, 23, 24), rgb(32, 30, 39)) ;
-    color: rgb(20, 23, 26);
+    color: rgb(108, 136, 163);
 }
 hr{
     margin: 0;
@@ -71,4 +71,17 @@ h2{
 h4{
     margin: 0;
     margin-bottom: 20vh;
+}
+h6{
+    margin: 0;
+    color: rgb(122, 122, 122);
+}
+input{
+    border-radius: 9px;
+}
+::placeholder{
+    color: rgb(0, 0, 0);
+}
+.tela_login{
+    margin: 10vw 70vh;
 }
