@@ -12,6 +12,7 @@ h1{
     text-align: center;
 }
 button{
+    white-space: nowrap;
     cursor: grab;
     font-size: larger;
     border: none;
@@ -19,10 +20,23 @@ button{
     background: linear-gradient(rgba(63, 63, 63, 0.521), rgba(71, 66, 66, 0.582)) padding-box, linear-gradient(to right, #272020d5, #0b0c0cc7, #4d4444af) border-box;
     border-radius: 8px;
     size: 10%;
-}   
-img{
-    width: auto;
-    height: auto;
+}
+.login{
+    margin-right: 1vw;
+    width: 15vw;
+    height: 5vh;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#img1{
+    max-width: 20vw;
+    max-height: 20vh;
+}
+#img2{
+    max-width: 4vw;
+    max-height: 4vh;
 }
 ul{
     margin: 0;
