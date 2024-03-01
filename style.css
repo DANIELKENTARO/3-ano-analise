@@ -11,6 +11,20 @@ h1{
     border-bottom: 1px solid black;
     text-align: center;
 }
+h2{
+    margin: 0;
+    margin-bottom: 20vh;
+    font-size: medium;
+    color: rgb(15, 12, 12);
+}
+h4{
+    margin: 0;
+    margin-bottom: 20vh;
+}
+h6{
+    margin: 0;
+    color: rgb(122, 122, 122);
+}
 button{
     white-space: nowrap;
     cursor: grab;
@@ -23,7 +37,7 @@ button{
 }
 .login{
     margin-right: 1vw;
-    width: 15vw;
+    width: 240px;
     height: 5vh;
     justify-content: space-between;
     display: flex;
@@ -77,20 +91,6 @@ footer{
     margin: 0;
     border:rgba(255, 255, 255, 0) solid;
 }
-h2{
-    margin: 0;
-    margin-bottom: 20vh;
-    font-size: medium;
-    color: rgb(15, 12, 12);
-}
-h4{
-    margin: 0;
-    margin-bottom: 20vh;
-}
-h6{
-    margin: 0;
-    color: rgb(122, 122, 122);
-}
 input{
     border-radius: 9px;
 }
@@ -99,4 +99,25 @@ input{
 }
 .tela_login{
     margin: 10vw 70vh;
+}
+.main{
+    margin: 0; 
+    display: flex;
+    flex-direction: column;
+}
+.carrossel{
+    align-items: center;
+}
+.produtos{
+    display: flex;
+    justify-content: space-evenly;
+}
+.produtos img{
+    width: 18vw;
+    height: 24vh;
+}
+.flex_proutos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
