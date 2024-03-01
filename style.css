@@ -100,6 +100,7 @@ input{
 .tela_login{
     margin: 10vw 70vh;
 }
+    align-self: center;
 .main{
     margin: 0; 
     display: flex;
@@ -107,6 +108,15 @@ input{
 }
 .carrossel{
     align-items: center;
+}
+#hide{
+    display: none;
+}
+#show{
+    padding-top: 3vh;
+    width: 80vw;
+    height: 40vh;
+    cursor: grab;
 }
 .produtos{
     display: flex;
@@ -116,8 +126,29 @@ input{
     width: 18vw;
     height: 24vh;
 }
-.flex_proutos{
+.flex_produtos{
+    text-align: center;
+    background-color:#0000002f ;
+}
+.descricao{
+    text-align: center;
+    background-color:#ffffff1c ;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.bloco1{
+   margin-bottom: 3vh;
+}
+.bloco2{
+   margin-bottom: 3vh;
+
+}
+.bloco3{
+   margin-bottom: 3vh;
+
+}
+.bloco4{
+   margin-bottom: 3vh;
+
 }
