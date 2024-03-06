@@ -7,6 +7,7 @@ hr{
     margin: 0;
 }
 h1{
+    margin: 0;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
@@ -50,8 +51,9 @@ button{
     max-height: 20vh;
 }
 #img2{
-    max-width: 4vw;
-    max-height: 4vh;
+    max-width: 3vw;
+    max-height: 5vh;
+    padding-left: 0.7vw;
 }
 ul{
     margin: 0;
@@ -68,7 +70,7 @@ li{
     flex-grow: 1;
 }
 a{
-    color: black;
+    color: rgb(108, 136, 163);
     text-decoration: none;
     text-align: center;
 }
@@ -100,23 +102,28 @@ input{
 .tela_login{
     margin: 10vw 70vh;
 }
-    align-self: center;
 .main{
     margin: 0; 
     display: flex;
     flex-direction: column;
 }
 .carrossel{
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    background-color: #0e0f1d;
+}
+.setas{
+    cursor:pointer;
 }
 #hide{
     display: none;
 }
 #show{
     padding-top: 3vh;
-    width: 80vw;
-    height: 40vh;
-    cursor: grab;
+    width: 30vw;
+    cursor: pointer;
 }
 .produtos{
     display: flex;
@@ -139,16 +146,24 @@ input{
 }
 .bloco1{
    margin-bottom: 3vh;
+   display: flex;
+   flex-direction: column;
 }
 .bloco2{
    margin-bottom: 3vh;
+   display: flex;
+   flex-direction: column;
 
 }
 .bloco3{
    margin-bottom: 3vh;
+   display: flex;
+   flex-direction: column;
 
 }
 .bloco4{
    margin-bottom: 3vh;
+   display: flex;
+   flex-direction: column;
 
 }
