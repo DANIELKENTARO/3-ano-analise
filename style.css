@@ -105,6 +105,8 @@ input{
     background-color: #0e0f1d;
 }
 .setas{
+    width: auto;
+    height: auto;
     cursor: pointer;
 }
 #hide{
@@ -126,6 +128,10 @@ input{
     margin:  0 0.8% 0% 0.8%;
     background-color:#0000002f ;
     border: rgba(0, 0, 0, 0.781) 1px solid;
+}
+li #p1 img{
+    width: auto;
+    height: auto;
 }
 .titulo_descricao{
     text-align: center;
