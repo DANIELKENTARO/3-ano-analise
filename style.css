@@ -3,27 +3,23 @@ body{
     background-image: linear-gradient(to top, rgb(24, 23, 24), rgb(32, 30, 39)) ;
     color: rgb(108, 136, 163);
 }
-hr{
+*{
     margin: 0;
 }
 h1{
-    margin: 0;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
 }
 h2{
-    margin: 0;
     margin-bottom: 20vh;
     font-size: medium;
     color: rgb(15, 12, 12);
 }
 h4{
-    margin: 0;
     margin-bottom: 20vh;
 }
 h6{
-    margin: 0;
     color: rgb(122, 122, 122);
 }
 button{
@@ -56,7 +52,6 @@ button{
     padding-left: 0.7vw;
 }
 ul{
-    margin: 0;
     display: flex;
     justify-content: space-between;
 }
@@ -89,10 +84,6 @@ footer{
     justify-content: space-around;
     background-image: linear-gradient( to top, rgb(5, 5, 5),  rgb(58, 55, 55));
 }
-#C{
-    margin: 0;
-    border:rgba(255, 255, 255, 0) solid;
-}
 input{
     border-radius: 9px;
 }
@@ -103,7 +94,6 @@ input{
     margin: 10vw 70vh;
 }
 .main{
-    margin: 0; 
     display: flex;
     flex-direction: column;
 }
@@ -115,7 +105,7 @@ input{
     background-color: #0e0f1d;
 }
 .setas{
-    cursor:pointer;
+    cursor: pointer;
 }
 #hide{
     display: none;
@@ -123,11 +113,9 @@ input{
 #show{
     padding-top: 3vh;
     width: 30vw;
-    cursor: pointer;
 }
 .produtos{
     display: flex;
-    justify-content: space-evenly;
 }
 .produtos img{
     width: 18vw;
@@ -135,7 +123,9 @@ input{
 }
 .flex_produtos{
     text-align: center;
+    margin:  0 0.8% 0% 0.8%;
     background-color:#0000002f ;
+    border: rgba(0, 0, 0, 0.781) 1px solid;
 }
 .descricao{
     text-align: center;
@@ -144,26 +134,38 @@ input{
     flex-direction: column;
     align-items: center;
 }
+.mainbloco{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.mainbloco img{
+    justify-content: space-between;
+}
+#bloco{
+    justify-content: space-between;
+}
 .bloco1{
    margin-bottom: 3vh;
    display: flex;
-   flex-direction: column;
+   padding-top: 1vh;
 }
 .bloco2{
    margin-bottom: 3vh;
    display: flex;
-   flex-direction: column;
-
+   padding-top: 1vh;
+   flex-direction: row;
 }
 .bloco3{
    margin-bottom: 3vh;
    display: flex;
-   flex-direction: column;
-
+   padding-top: 1vh;
+   flex-direction: row;
 }
 .bloco4{
    margin-bottom: 3vh;
    display: flex;
-   flex-direction: column;
-
+   flex-direction: row;
+   padding-top: 1vh;
 }
