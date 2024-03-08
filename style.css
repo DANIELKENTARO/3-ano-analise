@@ -127,12 +127,15 @@ input{
     background-color:#0000002f ;
     border: rgba(0, 0, 0, 0.781) 1px solid;
 }
-.descricao{
+.titulo_descricao{
     text-align: center;
     background-color:#ffffff1c ;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.descricao{
+    text-align: justify;
 }
 .mainbloco{
     display: flex;
