@@ -147,6 +147,7 @@ form ::placeholder{
 }
 .produtos{
     display: flex;
+    background-image:linear-gradient(to bottom, #0e0e13 90%, #0e0e1300) ;
 }
 .produtos img{
     width: 18vw;
