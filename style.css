@@ -97,7 +97,8 @@ input{
     display: flex;
     flex-direction: column;
     margin: 0;
-    padding-top: 10vh;
+    padding-top: 20vh;
+    padding-bottom: 26vh;
 }
 input{
     background-color: #0e0f1d00;
