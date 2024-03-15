@@ -209,3 +209,13 @@ li #p1 img{
    flex-direction: row;
    padding-top: 1vh;
 }
+.carrinho_produtos{
+    background-color: #0e0e13;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+.flex_carrinho{
+    display: flex;
+    flex-direction: column;
+}
