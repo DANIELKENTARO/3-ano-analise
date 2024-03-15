@@ -78,7 +78,6 @@ a{
    vertical-align: middle;
 }
 footer{
-    margin-top: 100vh;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -142,10 +141,6 @@ form ::placeholder{
 #hide{
     display: none;
 }
-#show{
-    padding-top: 3vh;
-    width: 30vw;
-}
 .produtos{
     display: flex;
     background-image:linear-gradient(to bottom, #0e0e13 90%, #0e0e1300) ;
@@ -165,6 +160,7 @@ li #p1 img{
     height: auto;
 }
 .titulo_descricao{
+    cursor: pointer;
     text-align: center;
     background-color:#ffffff1c ;
     display: flex;
