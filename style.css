@@ -51,6 +51,13 @@ button{
     max-height: 5vh;
     padding-left: 0.7vw;
 }
+#img3{
+    align-self: center;
+    max-width:  50vw;
+    max-height: 50vh;
+    min-width: 50vw;
+    min-height: 60vh;
+}
 ul{
     display: flex;
     justify-content: space-between;
@@ -126,6 +133,28 @@ form ::placeholder{
     display: flex;
     flex-direction: column;
 }
+.descricao_produto{
+    background-color: #01011b;
+    text-align: justify;
+    border: 1px solid rgb(26, 54, 86);
+    padding-left: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    font-display: inherit;
+    color: rgba(90, 124, 218, 0.975)47ac;
+}
+.nome_produto{
+    background-color: #13131a;
+}
+#produto_titulo{
+    font-size: 200%;
+    color: #084390ac;
+}
+.produto_display{
+    display: flex;
+    flex-direction: column;
+}
 .carrossel{
     display: flex;
     flex-direction: row;
@@ -169,6 +198,9 @@ li #p1 img{
 }
 .descricao{
     text-align: justify;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #07142fec;
 }
 .mainbloco{
     display: flex;
