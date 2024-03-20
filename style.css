@@ -182,7 +182,12 @@ form ::placeholder{
     text-align: center;
     margin:  0 0.8% 0% 0.8%;
     background-color:#04050f52 ;
-    border: rgba(5, 4, 17, 0.979) 1px solid;
+    border-bottom: rgba(5, 4, 17, 0.979) 1px solid;
+    border-top: rgba(5, 4, 17, 0.979) 1px solid;
+}
+.nome_produtos{
+    color: #006296ec;
+    background-color: #010101;
 }
 li #p1 img{
     width: auto;
