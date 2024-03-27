@@ -21,6 +21,7 @@ h4{
 }
 h6{
     color: rgb(153, 152, 152);
+    font-size: 90%;
 }
 button{
     white-space: nowrap;
