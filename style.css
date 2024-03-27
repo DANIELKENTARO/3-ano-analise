@@ -145,6 +145,22 @@ form ::placeholder{
     font-display: inherit;
     color: rgba(90, 124, 218, 0.975)47ac;
 }
+.informacoes_produto{
+    display: flex;
+    flex-direction: row;
+
+}
+.informacoes{
+display: flex;
+flex-direction: row;
+}
+.especificacoes{
+flex-direction: row;
+display: flex;
+}
+.li_especificacoes{
+    display: list-item;
+}
 .nome_produto{
     background-color: #13131a;
 }
