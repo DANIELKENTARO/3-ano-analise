@@ -95,7 +95,7 @@ input{
     border-radius: 9px;
 }
 ::placeholder{
-    color: rgb(0, 0, 0);
+    color: rgb(201, 201, 201);
 }
 .tela_login{
     text-align: center;
@@ -144,6 +144,14 @@ form ::placeholder{
     flex-grow: inherit;
     font-display: inherit;
     color: rgba(90, 124, 218, 0.975)47ac;
+}
+.input_produtos{
+    width: 20vw;
+    background-color: #575a5ebb;
+}
+.input_produtos ::placeholder{
+    font-size: 120%;
+    color: #777777c7;
 }
 .img_produto{
     width: 40vw;
@@ -205,6 +213,7 @@ display: flex;
     background-color:#04050f52 ;
     border-bottom: rgba(5, 4, 17, 0.979) 1px solid;
     border-top: rgba(5, 4, 17, 0.979) 1px solid;
+    font-size: 130%;
 }
 .nome_produtos{
     color: #006296ec;
