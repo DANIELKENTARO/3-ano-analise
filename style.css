@@ -133,11 +133,12 @@ form ::placeholder{
 .main{
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .descricao_produto{
-    background-color: #01011b;
+    background-color: #0d0d1400;
     text-align: justify;
-    border: 1px solid rgb(26, 54, 86);
+    border: 1px solid rgba(90, 92, 95, 0.101);
     padding-left: 4px;
     display: flex;
     flex-direction: column;
@@ -160,15 +161,14 @@ form ::placeholder{
 .informacoes_produto{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
 }
 .informacoes{
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 .especificacoes{
-flex-direction: row;
-display: flex;
+    flex-direction: row;
+    display: flex;
 }
 .li_especificacoes{
     display: list-item;
@@ -177,8 +177,11 @@ display: flex;
     background-color: #13131a;
 }
 #produto_titulo{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 50vw;
     font-size: 200%;
-    color: #084390ac;
+    color: #4d5763dc;
 }
 .produto_display{
     display: flex;
