@@ -1,10 +1,13 @@
 <?php
-if (isset($_POST['submit'])){
-    print_r($_POST["cpf"]);
-    print_r($_POST["telefone"]);
-    print_r($_POST["email"]);
-    print_r($_POST["cep"]);
-    print_r($_POST["senha"]);
+if (isset($_POST['submit']))
+{
+include_once("php/config.php");
+$cpf = $_POST["cpf"];
+$telefone = $_POST["telefone"];
+$email = $_POST["email"];
+$cep = $_POST["cep"];
+$senha = $_POST["senha"];
+$result = mysqli_query($conexao, "INSERT INTO `cliente` (cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
 }
 ?>
 <!DOCTYPE html>
@@ -22,23 +25,26 @@ if (isset($_POST['submit'])){
             <div class="flex_login">
             <h1>Criar Conta</h1>
             <p>Digite seus dados para criar sua conta</p>
+          
             <div class="formulario_input">
             <label for="cpf">CPF:</label>
             <input type="text" name="cpf" placeholder="000.000.000-00" min="14" max="14" autofocus="true" required>
             <label for="tel">Telefone:</label>
-            <input type="tel" placeholder="00 00000000" min="9" max="11" autocomplete="tel-national">
+            <input type="tel" name="telefone" placeholder="00 00000000" min="9" max="11" autocomplete="tel-national">
             </div>
+           
             <div class="formulario_input">
             <label for="Email">E-mail:</label>
-            <input type="email" name="email" placeholder="digite seu email" max="80" autocomplete="email" required>
+            <input type="text" name="email" placeholder="digite seu email" max="80">
             <label for="cep">Cep:</label>
             <input type="text" name="cep" placeholder="digite seu cep" min="9" max="9" required>
             </div>
+          
             <div class="formulario_input">
             <label for="password">Senha:</label>
             <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
             </div>
-            <input type="submit"><a id="a" href="index.html">enviar</a></input>
+            <input type="submit" name="submit"></input>
             </div>
         </form>
     </div>

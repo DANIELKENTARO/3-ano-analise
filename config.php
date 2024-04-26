@@ -10,5 +10,5 @@ $conexao = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 //    echo"erro";
 //}
 //else{
-    echo"conexão estabelecida";
+//    echo"conexão estabelecida";
 //}
