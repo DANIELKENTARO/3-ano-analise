@@ -7,7 +7,7 @@ $telefone = $_POST["telefone"];
 $email = $_POST["email"];
 $cep = $_POST["cep"];
 $senha = $_POST["senha"];
-$result = mysqli_query($conexao, "INSERT INTO `cliente` (cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
+$result = mysqli_query($conexao, "INSERT INTO `cliente`(cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
 }
 ?>
 <!DOCTYPE html>
@@ -28,9 +28,9 @@ $result = mysqli_query($conexao, "INSERT INTO `cliente` (cpf,telefone,email,cep,
           
             <div class="formulario_input">
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="000.000.000-00" min="14" max="14" autofocus="true" required>
+            <input type="text" name="cpf" placeholder="000.000.000-00" autofocus="true" required>
             <label for="tel">Telefone:</label>
-            <input type="tel" name="telefone" placeholder="00 00000000" min="9" max="11" autocomplete="tel-national">
+            <input type="tel" name="telefone" placeholder="00 00000000">
             </div>
            
             <div class="formulario_input">
