@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['submit']))
+if (isset($_POST["submit"]))
 {
 include_once("php/config.php");
 $cpf = $_POST["cpf"];
@@ -7,7 +7,7 @@ $telefone = $_POST["telefone"];
 $email = $_POST["email"];
 $cep = $_POST["cep"];
 $senha = $_POST["senha"];
-$result = mysqli_query($conexao, "INSERT INTO `cliente`(cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
+$result = mysqli_query($conexao, "INSERT INTO ``cliente``(cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
 }
 ?>
 <!DOCTYPE html>
