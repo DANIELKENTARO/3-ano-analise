@@ -165,10 +165,19 @@ form ::placeholder{
 .informacoes{
     display: flex;
     flex-direction: row;
+    overflow: visible;
+    flex-grow: unset;
 }
 .especificacoes{
     flex-direction: row;
     display: flex;
+    flex-grow: 1;
+    flex: 0 0 auto;
+    white-space: pre-wrap;
+    margin-right: 10px;
+}
+.text-box{
+    resize: -internal-textarea-auto;
 }
 .li_especificacoes{
     display: list-item;

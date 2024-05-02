@@ -1,15 +1,50 @@
 <?php
-if (isset($_POST["submit"]))
-{
-include_once("php/config.php");
-$cpf = $_POST["cpf"];
-$telefone = $_POST["telefone"];
-$email = $_POST["email"];
-$cep = $_POST["cep"];
-$senha = $_POST["senha"];
-$result = mysqli_query($conexao, "INSERT INTO ``cliente``(cpf,telefone,email,cep,senha) VALUES($cpf, $telefone, $email, $cep, $senha)");
+if (isset($_POST['submit'])) 
+    include_once("php/config.php");
+
+// Function to sanitize user input
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// Process registration form submission
+if (isset($_POST['submit'])) {
+
+    // Sanitize user input
+    $cpf = sanitizeInput($_POST['cpf']);
+    $telefone = sanitizeInput($_POST['telefone']);
+    $email = sanitizeInput($_POST['email']);
+    $cep = sanitizeInput($_POST['cep']);
+    $senha = sanitizeInput($_POST['senha']);
+
+
+    // Check if password meets minimum length requirement
+    if (strlen($senha) < 8) {
+        echo "<p class='error'>Senha deve ter no mínimo 8 caracteres!</p>";
+        exit();
+    }
+
+    // Hash the password for security
+    $hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
+    
+    // Prepare and execute SQL query to insert user data
+    $sql = "INSERT INTO cliente (cpf, telefone, email, cep, senha) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $hashedPassword);
+
+    if ($stmt->execute()) {
+        echo "<p class='success'>Usuário cadastrado com sucesso!</p>";
+    } else {
+        echo "<p class='error'>Falha ao cadastrar usuário: " . $conexao->error . "</p>";
+    }
+
+    $stmt->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
