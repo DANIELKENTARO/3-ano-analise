@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) 
-    include_once("php/config.php");
+    include_once("config.php");
 
 // Function to sanitize user input
 function sanitizeInput($data) {
@@ -82,6 +82,7 @@ if (isset($_POST['submit'])) {
             <input type="submit" name="submit"></input>
             </div>
         </form>
+        <a href='index.html'>voltar</a>
     </div>
     </body>
 </html>
