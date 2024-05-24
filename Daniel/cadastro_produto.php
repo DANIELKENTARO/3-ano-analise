@@ -54,21 +54,21 @@ if (isset($_POST['submit'])) {
             <label for="nome">Nome do produto:</label>
             <input type="text" name="nome" placeholder="Nome Produto" autofocus="true" required>
             <label for="preco">Preço do produto:</label>
-            <input type="tel" name="preco" placeholder="(sem R$) 00.00" require>
+            <input type="text" name="preco" placeholder="R$00,00"autocomplete="on" maxlength="12" required>
             </div>
            
             <div class="formulario_input">
             <label for="quantidade">Quantidade de produtos:</label>
-            <input type="text" name="quantidade" placeholder="Quantidade de produtos" require>
+            <input type="text" name="quantidade" placeholder="Quantidade de produtos" required>
             <label for="cor">Cores:</label>
             <input type="text" name="cor" placeholder="Cores dispoíveis" required>
             </div>
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
-            <input type="text" name="categoria" placeholder="Escreva uma categoria" require>
+            <input type="text" name="categoria" placeholder="Escreva uma categoria" required>
             <label for="foto">Foto do produto:</label>
-            <input type="file" name="foto" placeholder="escolha uma foto" require>
+            <input type="file" name="foto" placeholder="escolha uma foto" required>
             </div>
             <input type="submit" name="submit" id="submit"></input><br>
             <a href="index.html">voltar</a>
