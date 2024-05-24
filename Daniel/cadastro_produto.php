@@ -19,11 +19,12 @@ if (isset($_POST['submit'])) {
     $quantidade = sanitizeInput($_POST['quantidade']);
     $cor = sanitizeInput($_POST['cor']);
     $categoria = sanitizeInput($_POST['categoria']);
+    $foto = sanitizeInput($_POST['foto']);
 
     // Prepare and execute SQL query to insert user data
-    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, cor_produto, categoria) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, cor_produto, categoria, foto_produto) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssss', $nome, $preco, $quantidade, $cor, $categoria);
+    $stmt->bind_param('ssssss', $nome, $preco, $quantidade, $cor, $categoria, $foto);
 
     if ($stmt->execute()) {
         echo "<p class='success'>Produto cadastrado com sucesso!</p>";
@@ -66,6 +67,8 @@ if (isset($_POST['submit'])) {
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
             <input type="text" name="categoria" placeholder="Escreva uma categoria" require>
+            <label for="foto">Foto do produto:</label>
+            <input type="file" name="foto" placeholder="escolha uma foto" require>
             </div>
             <input type="submit" name="submit" id="submit"></input><br>
             <a href="index.html">voltar</a>
