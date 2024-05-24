@@ -26,6 +26,11 @@ if (isset($_POST['submit'])) {
         echo "<p class='error'>Senha deve ter no mínimo 8 caracteres!</p>";
         exit();
     }
+    // Check if cpf meets minimum length requirement
+    if (strlen($cpf) < 11) {
+        echo "<p class='error'>cpf deve ter no mínimo 11 caracteres!</p>";
+        exit();
+    }
 
     // Hash the password for security
     $hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
@@ -62,16 +67,17 @@ if (isset($_POST['submit'])) {
           
             <div class="formulario_input">
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="000.000.000-00" min="14" max="14" autofocus="true" required>
+            <input type="text" name="cpf" placeholder="123.456.789.10" autocomplete="on" maxlength="14" autofocus="true" require>
+            <script src="java.js"></script>
             <label for="tel">Telefone:</label>
-            <input type="tel" name="telefone" placeholder="00 00000000" min="9" max="11" autocomplete="tel-national">
+            <input type="tel" name="telefone" placeholder="(00)00000-0000" onkeypress="mask(this, mphone);" maxlength="16">
             </div>
            
             <div class="formulario_input">
             <label for="Email">E-mail:</label>
-            <input type="text" name="email" placeholder="digite seu email" max="80">
+            <input type="email" name="email" placeholder="digite seu email" maxlength="80" require>
             <label for="cep">Cep:</label>
-            <input type="text" name="cep" placeholder="digite seu cep" min="9" max="9" required>
+            <input type="text" name="cep" placeholder="digite seu cep" onkeyup="handleZipCode(event)" maxlength="9">
             </div>
           
             <div class="formulario_input">

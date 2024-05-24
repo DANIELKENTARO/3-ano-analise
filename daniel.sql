@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/05/2024 às 15:03
+-- Tempo de geração: 24/05/2024 às 17:00
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `cpf` varchar(14) NOT NULL,
-  `telefone` varchar(11) DEFAULT NULL,
+  `telefone` varchar(16) DEFAULT NULL,
   `email` varchar(80) NOT NULL,
-  `cep` varchar(10) NOT NULL,
-  `senha` varchar(80) NOT NULL
+  `cep` varchar(9) NOT NULL,
+  `senha` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -40,8 +40,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
-('123.456.789-10', '(99)9999999', '123@gmail.com', '123456-78', '12345678'),
-('45454543', '43543543', '345435435@gmail.com', '34543543', '$2y$10$TbhJWmDvqQSuie3wQ3VMWODgJla36Gk3liUQQma1U508IxG2CTUWS');
+('123.456.789-10', '(12) 34567-8910', '123@gmail.com', '12345-678', '$2y$10$5LBuGUGRqjme7pRaXCqyiuiCwC1PFZdj9uZR0NsLuV0FlfAGCc0wy');
 
 -- --------------------------------------------------------
 
