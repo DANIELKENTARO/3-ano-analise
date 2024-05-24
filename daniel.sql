@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/05/2024 às 17:03
+-- Tempo de geração: 24/05/2024 às 13:49
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -52,19 +52,19 @@ INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
 CREATE TABLE `produto` (
   `id_produto` int(11) NOT NULL,
   `nome_produto` varchar(80) NOT NULL,
-  `preco_produto` decimal(10,0) NOT NULL,
+  `preco_produto` varchar(13) NOT NULL,
   `quantidade_produto` varchar(999) NOT NULL,
   `cor_produto` char(200) NOT NULL,
-  `categoria` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `categoria` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `foto_produto` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `cor_produto`, `categoria`) VALUES
-(1, 'lápis', 0, '100', 'preto', 'escolar'),
-(2, 'lapiseira', 33, '52', 'preto', 'escolar');
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `cor_produto`, `categoria`, `foto_produto`) VALUES
+(1, 'lápis', '435,40', '1', 'branco', 'escolar', 0x6c6f676f2e706e67);
 
 --
 -- Índices para tabelas despejadas
@@ -90,7 +90,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
