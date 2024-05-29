@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/05/2024 às 17:00
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Generation Time: 29-Maio-2024 às 16:43
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `daniel`
+-- Database: `daniel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cliente`
+-- Estrutura da tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -33,19 +34,21 @@ CREATE TABLE `cliente` (
   `email` varchar(80) NOT NULL,
   `cep` varchar(9) NOT NULL,
   `senha` varchar(225) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `cliente`
+-- Extraindo dados da tabela `cliente`
 --
 
 INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
-('123.456.789-10', '(12) 34567-8910', '123@gmail.com', '12345-678', '$2y$10$5LBuGUGRqjme7pRaXCqyiuiCwC1PFZdj9uZR0NsLuV0FlfAGCc0wy');
+('123.456.789-10', '(12) 34567-8910', '123@gmail.com', '12345-678', '$2y$10$5LBuGUGRqjme7pRaXCqyiuiCwC1PFZdj9uZR0NsLuV0FlfAGCc0wy'),
+('123.456.789-23', '(58) 49938-0223', 'aaa@gmail.com', '74898-587', '$2y$10$wd/CxsniI9UbAzzVXqjvmuylH.Wu6pg2ERk33TU.COtcw1JAIRnzS'),
+('123.456.789-99', '(12) 12121-2121', '1234@gmail.com', '12445-534', '$2y$10$Lwm.JmEFwdRsiGJ/uTBiJOL1Tjcqh7kpdGyIRGpPC5bILLi7tMelS');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto`
+-- Estrutura da tabela `produto`
 --
 
 CREATE TABLE `produto` (
@@ -54,42 +57,35 @@ CREATE TABLE `produto` (
   `preco_produto` varchar(13) NOT NULL,
   `quantidade_produto` varchar(999) NOT NULL,
   `cor_produto` char(200) NOT NULL,
-  `categoria` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `categoria` varchar(80) CHARACTER SET utf8 NOT NULL,
   `foto_produto` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `produto`
---
-
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `cor_produto`, `categoria`, `foto_produto`) VALUES
-(1, 'lápis', '435,40', '1', 'branco', 'escolar', 0x6c6f676f2e706e67);
-
---
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cpf`);
 
 --
--- Índices de tabela `produto`
+-- Indexes for table `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `produto`
+-- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
