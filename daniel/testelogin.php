@@ -16,7 +16,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
     //print_r('Email: ' . $email . "<br>");
    //print_r('Senha: ' . $senha. "<br>");
     
-    $sql = "SELECT * FROM `cliente` WHERE email = '123@gmail.com' AND senha = '12345678';";
+    $sql = "SELECT * FROM `cliente` WHERE email = '$email' AND senha = '$senha';";
 
     $result = $conexao->query($sql);
 
@@ -26,7 +26,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
             header("location: login.php");
         }
         else{
-            header("location: login.php");
+            header("location: index.html");
         }
 }
 else{
