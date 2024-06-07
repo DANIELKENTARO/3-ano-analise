@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Jun-2024 às 14:36
+-- Generation Time: 07-Jun-2024 às 17:20
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carrinho` (
   `id_carrinho` int(11) NOT NULL,
-  `cpf` int(11) DEFAULT NULL,
-  `id_produto` int(11) DEFAULT NULL,
+  `pk_cpf` varchar(14) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `pk_id_produto` int(11) DEFAULT NULL,
   `estado` varchar(2) NOT NULL,
   `municipio` varchar(30) NOT NULL,
   `bairro` varchar(60) NOT NULL,
@@ -91,13 +91,16 @@ INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidad
 -- Indexes for table `carrinho`
 --
 ALTER TABLE `carrinho`
-  ADD PRIMARY KEY (`id_carrinho`);
+  ADD PRIMARY KEY (`id_carrinho`),
+  ADD KEY `pk_id_produto` (`pk_id_produto`),
+  ADD KEY `pk_cpf` (`pk_cpf`);
 
 --
 -- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`cpf`);
+  ADD PRIMARY KEY (`cpf`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `produto`
@@ -120,6 +123,17 @@ ALTER TABLE `carrinho`
 --
 ALTER TABLE `produto`
   MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`pk_cpf`) REFERENCES `cliente` (`cpf`),
+  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`pk_id_produto`) REFERENCES `produto` (`id_produto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
