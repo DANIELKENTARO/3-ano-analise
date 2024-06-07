@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
     <div class="tela_login">
@@ -19,7 +25,7 @@
             </div>
             <div class="formulario_input">
             <label for="senha">senha:</label>
-            <input type="password" name="senha" placeholder="digite sua senha" required>
+            <input type="password" id="password" name="senha" placeholder="digite sua senha" required>
             </div>
             <a href="#"><h6>esqueci minha senha</h6></a> <br>
             <input type="submit" name="submit" value="enviar">

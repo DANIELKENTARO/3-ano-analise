@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Maio-2024 às 16:43
+-- Generation Time: 07-Jun-2024 às 14:36
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -25,6 +25,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `id_carrinho` int(11) NOT NULL,
+  `cpf` int(11) DEFAULT NULL,
+  `id_produto` int(11) DEFAULT NULL,
+  `estado` varchar(2) NOT NULL,
+  `municipio` varchar(30) NOT NULL,
+  `bairro` varchar(60) NOT NULL,
+  `rua` varchar(70) NOT NULL,
+  `numero` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cliente`
 --
 
@@ -41,9 +58,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
-('123.456.789-10', '(12) 34567-8910', '123@gmail.com', '12345-678', '$2y$10$5LBuGUGRqjme7pRaXCqyiuiCwC1PFZdj9uZR0NsLuV0FlfAGCc0wy'),
-('123.456.789-23', '(58) 49938-0223', 'aaa@gmail.com', '74898-587', '$2y$10$wd/CxsniI9UbAzzVXqjvmuylH.Wu6pg2ERk33TU.COtcw1JAIRnzS'),
-('123.456.789-99', '(12) 12121-2121', '1234@gmail.com', '12445-534', '$2y$10$Lwm.JmEFwdRsiGJ/uTBiJOL1Tjcqh7kpdGyIRGpPC5bILLi7tMelS');
+('123.456.789-10', '(99) 99999-9999', '123@gmail.com', '12345-678', '12345678');
 
 -- --------------------------------------------------------
 
@@ -62,8 +77,21 @@ CREATE TABLE `produto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `cor_produto`, `categoria`, `foto_produto`) VALUES
+(1, 'caneta', '200', '100', 'azul, preto e vermelho', 'escolar, escritÃ³rio', 0x616e746572696f722e706e67);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD PRIMARY KEY (`id_carrinho`);
 
 --
 -- Indexes for table `cliente`
@@ -82,10 +110,16 @@ ALTER TABLE `produto`
 --
 
 --
+-- AUTO_INCREMENT for table `carrinho`
+--
+ALTER TABLE `carrinho`
+  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

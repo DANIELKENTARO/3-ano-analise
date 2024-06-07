@@ -33,12 +33,12 @@ if (isset($_POST['submit'])) {
     }
 
     // Hash the password for security
-    $hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
+    //$hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
     
     // Prepare and execute SQL query to insert user data
     $sql = "INSERT INTO cliente (cpf, telefone, email, cep, senha) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $hashedPassword);
+    $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $senha);
 
     if ($stmt->execute()) {
         echo "<p class='success'>Usuário cadastrado com sucesso!</p>";
@@ -57,6 +57,12 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
     <div class="tela_login">

@@ -43,6 +43,12 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastrar produto</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
     <div class="tela_login">
@@ -54,7 +60,7 @@ if (isset($_POST['submit'])) {
             <label for="nome">Nome do produto:</label>
             <input type="text" name="nome" placeholder="Nome Produto" autofocus="true" required>
             <label for="preco">Preço do produto:</label>
-            <input type="text" name="preco" placeholder="R$00,00"autocomplete="on" maxlength="12" required>
+            <input type="text" name="preco" placeholder="R$ 00,00" autocomplete="on" maxlength="12" required>
             </div>
            
             <div class="formulario_input">
