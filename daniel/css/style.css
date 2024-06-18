@@ -10,6 +10,7 @@ h1{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
+    margin-bottom: 5vh;
 }
 h2{
     margin-bottom: 20vh;
@@ -167,18 +168,6 @@ form ::placeholder{
     display: flex;
     flex-direction: row;
 }
-.carrossel{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0e0f1d;
-}
-.setas{
-    width: auto;
-    height: auto;
-    cursor: pointer;
-}
 #hide{
     display: none;
 }
@@ -192,11 +181,21 @@ form ::placeholder{
 }
 .flex_produtos{
     text-align: center;
-    margin:  0 0.8% 0% 0.8%;
+    padding:  0 0.8% 0% 0.8%;
     background-color:#04050f52 ;
     border-bottom: rgba(5, 4, 17, 0.979) 1px solid;
     border-top: rgba(5, 4, 17, 0.979) 1px solid;
     font-size: 130%;
+}
+.main .flex_produtos{
+    margin-top: 7vh;
+}
+section{
+    margin: 2px;
+    padding: 1px;
+}
+section label:hover{
+    cursor: pointer;
 }
 .nome_produtos{
     color: #006296ec;
@@ -221,16 +220,15 @@ li #p1 img{
     background-color: #07142fec;
 }
 .mainbloco{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: grid;
+    grid-template-rows: 19vw 19vw 19vw 19vw 19vw;
+    grid-template-columns: auto;
+    row-gap: 3vw;
     align-items: center;
 }
-.mainbloco img{
-    justify-content: space-between;
-}
 #bloco{
-    justify-content: space-between;
+    padding-top: 5vh;
+    padding-bottom: 1vh;
 }
 .bloco1{
    margin-bottom: 3vh;

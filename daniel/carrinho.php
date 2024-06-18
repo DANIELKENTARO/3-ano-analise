@@ -14,36 +14,21 @@ function sanitizeInput($data) {
 if (isset($_POST['submit'])) {
 
     // Sanitize user input
-    $cpf = sanitizeInput($_POST['cpf']);
-    $telefone = sanitizeInput($_POST['telefone']);
-    $email = sanitizeInput($_POST['email']);
-    $cep = sanitizeInput($_POST['cep']);
-    $senha = sanitizeInput($_POST['senha']);
+    $estado = sanitizeInput($_POST['estado']);
+    $municipio = sanitizeInput($_POST['municipio']);
+    $numero = sanitizeInput($_POST['numero']);
 
 
-    // Check if password meets minimum length requirement
-    if (strlen($senha) < 8) {
-        echo "<p class='error'>Senha deve ter no mínimo 8 caracteres!</p>";
-        exit();
-    }
-    // Check if cpf meets minimum length requirement
-    if (strlen($cpf) < 11) {
-        echo "<p class='error'>cpf deve ter no mínimo 11 caracteres!</p>";
-        exit();
-    }
-
-    // Hash the password for security
-    //$hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
-    
     // Prepare and execute SQL query to insert user data
-    $sql = "INSERT INTO cliente (cpf, telefone, email, cep, senha) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO carrinho (estado, municipio, numero) VALUES (?, ?, ?)";
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $senha);
+    $stmt->bind_param('sss', $estado, $municipio, $numero);
 
     if ($stmt->execute()) {
-        echo "<p class='success'>Usuário cadastrado com sucesso!</p>";
-    } else {
-        echo "<p class='error'>Falha ao cadastrar usuário: " . $conexao->error . "</p>";
+        header('location: confirmar_compra.php');
+    }
+    else {
+        header('location: testelogin.php');
     }
 
     $stmt->close();
@@ -62,57 +47,70 @@ if (isset($_POST['submit'])) {
             background-color: #fff.34;
             color: #fff !important;
         }
+        .card{
+            margin-left: 1vw;
+            margin-right: 1vw;
+            gap: 1vh;
+            display: grid;
+            grid-row: auto;
+            grid-template-columns: auto auto auto auto auto;
+            grid-template-rows: auto;
+        }
+        .card img{
+            width: 19vw;
+        }
+        .cards section{
+            gap: 4vh;
+            border: 1px solid black;
+        }
     </style>
     </head>
 <body>
-    <header> 
-        <div class="menu">
-            <div>
-            <a href="index.html">
-                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-            </a>
-            </div>
-<div class="login">
-<button><a href="login.php">login</a></button>
-<button><a href="criar_conta.php">criar conta</a></button>
+<header> 
+    <div class="menu">
+        <div>
+        <a href="index.html">
+            <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+        </a>
+        </div>
+    <div class="login">
+    <button><a href="login.php">login</a></button>
+    <button><a href="criar_conta.php">criar conta</a></button>
     <div class="carrinho">
-<a href="carrinho.html">
+    <a href="carrinho.php">
     <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
-</a>
+    </a>
     </div>
-    </header>
-    <main>
+</header>
+<main>
         <div class="carrinho">
             <div class="carrinho_produtos">
-                <div class="flex_carrinho">
-                    <label for="carrinho1"></label>
-                    <img src="img/Sem título.png" alt="aaaa" id="img1">
-                    <div class="bloco1" id="carrinho1">aaa</div>
+                <div class="card">
+                    <section>
+                        <section><img src="img/Sem título.png" alt="" name="produto"></section>
+                        <section><div name="preco">R$ 00.00</div></section>
+                    </section>
                 </div>
             </div>
             <div class="formulario_carrinho">
                 <form action="confirmar_compra.php" method="post" class="formlogin">
                     <div class="flex_login">
                         <div class="formulario_input">
-                        <label for=""></label>
-                        <input type="" id="" placeholder="" autofocus="true" required>
+                        <label for="estado">Estado:</label>
+                        <input type="text" nome="estado" placeholder="Digite o nome do seu estado" autofocus="false" required>
                         </div>
                         <div class="formulario_input">
-                        <label for=""></label>
-                        <input type="" placeholder="" required>
+                        <label for="municipio">Municipio:</label>
+                        <input type="text" name="municipio" placeholder="Digite o nome da sua cidade" required>
                         </div>
                         <div class="formulario_input">
-                        <label for=""></label>
-                        <input type="" placeholder="" required>
-                        </div>
-                        <div class="formulario_input">
-                        <label for=""></label>
-                        <input type="" placeholder="" required>
+                        <label for="numero">Número:</label>
+                        <input type="number" name="numero" minlength="1" placeholder="Digite o número da sua casa" required>
                         </div>
                         <input type="submit" value="finalizar compra">
                 </form>
             </div>
         </div>
-    </main>
+</main>
 </body>
 </html>

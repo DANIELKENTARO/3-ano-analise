@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Jun-2024 às 17:20
+-- Generation Time: 13-Jun-2024 às 16:20
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `daniel`
+-- Database: `daniel1`
 --
 
 -- --------------------------------------------------------
@@ -37,6 +37,17 @@ CREATE TABLE `carrinho` (
   `bairro` varchar(60) NOT NULL,
   `rua` varchar(70) NOT NULL,
   `numero` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id_categorias` int(11) NOT NULL,
+  `opcoes_categorias` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,6 +74,17 @@ INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `cores`
+--
+
+CREATE TABLE `cores` (
+  `id_cores` int(11) NOT NULL,
+  `opcoes_cores` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produto`
 --
 
@@ -71,17 +93,10 @@ CREATE TABLE `produto` (
   `nome_produto` varchar(80) NOT NULL,
   `preco_produto` varchar(13) NOT NULL,
   `quantidade_produto` varchar(999) NOT NULL,
-  `cor_produto` char(200) NOT NULL,
-  `categoria` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `pk_id_cores` int(11) NOT NULL,
+  `pk_id_categorias` int(11) NOT NULL,
   `foto_produto` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `produto`
---
-
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `cor_produto`, `categoria`, `foto_produto`) VALUES
-(1, 'caneta', '200', '100', 'azul, preto e vermelho', 'escolar, escritÃ³rio', 0x616e746572696f722e706e67);
 
 --
 -- Indexes for dumped tables
@@ -96,6 +111,12 @@ ALTER TABLE `carrinho`
   ADD KEY `pk_cpf` (`pk_cpf`);
 
 --
+-- Indexes for table `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id_categorias`);
+
+--
 -- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
@@ -103,10 +124,18 @@ ALTER TABLE `cliente`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `cores`
+--
+ALTER TABLE `cores`
+  ADD PRIMARY KEY (`id_cores`);
+
+--
 -- Indexes for table `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`id_produto`);
+  ADD PRIMARY KEY (`id_produto`),
+  ADD KEY `pk_id_cores` (`pk_id_cores`),
+  ADD KEY `pk_id_categorias` (`pk_id_categorias`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -117,6 +146,18 @@ ALTER TABLE `produto`
 --
 ALTER TABLE `carrinho`
   MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id_categorias` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cores`
+--
+ALTER TABLE `cores`
+  MODIFY `id_cores` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produto`
@@ -134,6 +175,13 @@ ALTER TABLE `produto`
 ALTER TABLE `carrinho`
   ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`pk_cpf`) REFERENCES `cliente` (`cpf`),
   ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`pk_id_produto`) REFERENCES `produto` (`id_produto`);
+
+--
+-- Limitadores para a tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD CONSTRAINT `pk_id_categorias` FOREIGN KEY (`pk_id_categorias`) REFERENCES `categorias` (`id_categorias`),
+  ADD CONSTRAINT `pk_id_cores` FOREIGN KEY (`pk_id_cores`) REFERENCES `cores` (`id_cores`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
