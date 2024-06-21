@@ -1,12 +1,13 @@
 <?php
-if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
+session_start();
+if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
     #com acesso
 
-        function sanitizeInput($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+    function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
     }
 
     include_once("config.php");
@@ -14,7 +15,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
     $senha = $_POST['senha'];
         
     //print_r('Email: ' . $email . "<br>");
-   //print_r('Senha: ' . $senha. "<br>");
+    //print_r('Senha: ' . $senha. "<br>");
 
     $sql = "SELECT * FROM `cliente` WHERE email = '$email' AND senha = '$senha'";
 
@@ -24,14 +25,14 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
     //print_r($result);
 
     if (mysqli_num_rows($result) < 1){
-        header('location: login.php');
+    header('location: login.php');
     }
     else{
-        header('location: index.html');
+    header('location: index.html');
     }
 }
 else{
-    #sem acesso
+#sem acesso
     header('location: login.php');
 }
 ?>

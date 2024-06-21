@@ -22,7 +22,7 @@ if (isset($_POST['submit']) && !empty($_POST['estado']) && !empty($_POST['munici
 }
 else{
     #sem acesso
-    //header('location: criar_conta.php');
+    header('location: criar_conta.php');
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,9 @@ else{
 </head>
 <body>
     <form action="index.html" method="get">
-        <input type="" value="Confirmar compra?"></input>
+        <h1>CONFIRMAR COMPRA?</h1>
+        <input type="submit" value="SIM" name="1"></input>
+        <input type="submit" value="NÃO" name="2"></input>
     </form>
 </body>
 </html>

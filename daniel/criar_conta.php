@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['submit'])) 
     include_once("config.php");
 
@@ -27,8 +28,8 @@ if (isset($_POST['submit'])) {
         exit();
     }
     // Check if cpf meets minimum length requirement
-    if (strlen($cpf) < 11) {
-        echo "<p class='error'>cpf deve ter no mínimo 11 caracteres!</p>";
+    if (strlen($cpf) < 14) {
+        echo "<p class='error'>cpf deve ter no mínimo 14 caracteres!</p>";
         exit();
     }
 
