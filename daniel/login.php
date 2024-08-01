@@ -31,7 +31,7 @@
             <input type="submit" name="submit" value="enviar">
             </div>
         </form>
-        <a id="a" href="index.html">voltar</a>
+        <a id="a" href="index.php">voltar</a>
     </div>
     </body>
 </html>

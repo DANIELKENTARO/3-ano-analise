@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
     #com acesso
 
@@ -25,9 +26,11 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
 
     if (mysqli_num_rows($result) < 1){
     header('location: login.php');
+    $login_status == false;
     }
     else{
-    header('location: index.html');
+    header('location: index.php');
+    $login_status == true;
     }
 }
 else{
@@ -35,15 +38,3 @@ else{
     header('location: login.php');
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
-    
-</body>
-</html>

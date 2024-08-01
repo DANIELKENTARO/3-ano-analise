@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
             <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
             </div>
             <input type="submit" name="submit"></input>
-            <a href="index.html">voltar</a>
+            <a href="testelogin.php">voltar</a>
             </div>
         </form>
     </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['submit'])) 
     include_once("config.php");
 
@@ -20,14 +21,15 @@ if (isset($_POST['submit'])) {
     $cor = sanitizeInput($_POST['cor']);
     $categoria = sanitizeInput($_POST['categoria']);
     $foto = sanitizeInput($_POST['foto']);
+    $descricao = sanitizeInput($_POST['descricao']);
 
     // Prepare and execute SQL query to insert user data
-    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, cor_produto, categoria, foto_produto) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, pk_id_cores, pk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssssss', $nome, $preco, $quantidade, $cor, $categoria, $foto);
+    $stmt->bind_param('sssssss', $nome, $preco, $quantidade, $cor, $categoria, $foto, $descricao);
 
     if ($stmt->execute()) {
-        echo "<p class='success'>Produto cadastrado com sucesso!</p>";
+        echo "<p class='success'>produto cadastrado com sucesso!</p>";
     } else {
         echo "<p class='error'>Falha ao cadastrar produto: " . $conexao->error . "</p>";
     }
@@ -67,17 +69,21 @@ if (isset($_POST['submit'])) {
             <label for="quantidade">Quantidade de produtos:</label>
             <input type="text" name="quantidade" placeholder="Quantidade de produtos" required>
             <label for="cor">Cores:</label>
-            <input type="text" name="cor" placeholder="Cores dispoíveis" required>
+            <input type="text" name="cor" placeholder="Cores dispoíveis">
             </div>
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
-            <input type="text" name="categoria" placeholder="Escreva uma categoria" required>
+            <input type="text" name="categoria" placeholder="Escreva uma categoria">
             <label for="foto">Foto do produto:</label>
             <input type="file" name="foto" placeholder="escolha uma foto" required>
             </div>
+            <div class="formulario_input">
+            <label for="descricao">Adicione uma descrição:</label>
+            <input type="text" maxlength="200" name="descricao" placeholder="insira uma descrição" required>
+        </div>
             <input type="submit" name="submit" id="submit"></input><br>
-            <a href="index.html">voltar</a>
+            <a href="index.php">voltar</a>
             </div>
         </form>
     </div>

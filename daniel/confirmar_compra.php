@@ -34,7 +34,7 @@ else{
     <title></title>
 </head>
 <body>
-    <form action="index.html" method="get">
+    <form action="index.php" method="get">
         <h1>CONFIRMAR COMPRA?</h1>
         <input type="submit" value="SIM" name="1"></input>
         <input type="submit" value="NÃO" name="2"></input>

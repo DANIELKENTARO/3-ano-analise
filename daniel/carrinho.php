@@ -1,17 +1,6 @@
 <?php
-if (isset($_POST['submit'])) 
-    include_once("config.php");
-
-// Function to sanitize user input
-function sanitizeInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 // Process registration form submission
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
 
     // Sanitize user input
     $estado = sanitizeInput($_POST['estado']);
