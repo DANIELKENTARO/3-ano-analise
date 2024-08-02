@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Jun-2024 às 16:00
+-- Generation Time: 01-Ago-2024 às 16:57
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `daniel`
+-- Database: `daniel1`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `carrinho` (
   `id_carrinho` int(11) NOT NULL,
-  `pk_cpf` varchar(14) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pk_id_produto` int(11) DEFAULT NULL,
+  `fk_cpf` varchar(14) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `fk_id_produto` int(11) DEFAULT NULL,
   `estado` varchar(2) NOT NULL,
   `municipio` varchar(30) NOT NULL,
   `bairro` varchar(60) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE `historico` (
   `id_historico` int(11) NOT NULL,
   `data` date NOT NULL,
   `hora` varchar(9) NOT NULL,
-  `pk_id_carrinho` int(11) DEFAULT NULL
+  `fk_id_carrinho` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -149,8 +149,8 @@ CREATE TABLE `produto` (
   `nome_produto` varchar(80) NOT NULL,
   `preco_produto` varchar(13) NOT NULL,
   `quantidade_produto` varchar(999) NOT NULL,
-  `pk_id_cores` int(11) DEFAULT NULL,
-  `pk_id_categorias` int(11) NOT NULL,
+  `fk_id_cores` int(11) DEFAULT NULL,
+  `fk_id_categorias` int(11) DEFAULT NULL,
   `imagem` blob NOT NULL,
   `descricao` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -164,8 +164,8 @@ CREATE TABLE `produto` (
 --
 ALTER TABLE `carrinho`
   ADD PRIMARY KEY (`id_carrinho`),
-  ADD KEY `pk_id_produto` (`pk_id_produto`),
-  ADD KEY `pk_cpf` (`pk_cpf`);
+  ADD KEY `pk_id_produto` (`fk_id_produto`),
+  ADD KEY `pk_cpf` (`fk_cpf`);
 
 --
 -- Indexes for table `categorias`
@@ -191,15 +191,13 @@ ALTER TABLE `cores`
 --
 ALTER TABLE `historico`
   ADD PRIMARY KEY (`id_historico`),
-  ADD KEY `pk_id_carrinho` (`pk_id_carrinho`);
+  ADD KEY `pk_id_carrinho` (`fk_id_carrinho`);
 
 --
 -- Indexes for table `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`id_produto`),
-  ADD KEY `pk_id_cores` (`pk_id_cores`),
-  ADD KEY `pk_id_categorias` (`pk_id_categorias`);
+  ADD PRIMARY KEY (`id_produto`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -233,7 +231,7 @@ ALTER TABLE `historico`
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -243,21 +241,14 @@ ALTER TABLE `produto`
 -- Limitadores para a tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`pk_cpf`) REFERENCES `cliente` (`cpf`),
-  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`pk_id_produto`) REFERENCES `produto` (`id_produto`);
+  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`fk_cpf`) REFERENCES `cliente` (`cpf`),
+  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`fk_id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
 -- Limitadores para a tabela `historico`
 --
 ALTER TABLE `historico`
-  ADD CONSTRAINT `pk_id_carrinho` FOREIGN KEY (`pk_id_carrinho`) REFERENCES `carrinho` (`id_carrinho`);
-
---
--- Limitadores para a tabela `produto`
---
-ALTER TABLE `produto`
-  ADD CONSTRAINT `pk_id_categorias` FOREIGN KEY (`pk_id_categorias`) REFERENCES `categorias` (`id_categorias`),
-  ADD CONSTRAINT `pk_id_cores` FOREIGN KEY (`pk_id_cores`) REFERENCES `cores` (`id_cores`);
+  ADD CONSTRAINT `pk_id_carrinho` FOREIGN KEY (`fk_id_carrinho`) REFERENCES `carrinho` (`id_carrinho`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
