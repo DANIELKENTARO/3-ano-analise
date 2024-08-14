@@ -1,7 +1,7 @@
 <?php
 $dbhost = "localhost";
 $dbusername = "root";
-$dbpassword = "";
+$dbpassword = "escola";
 $dbname = "daniel";
 
 $conexao = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
@@ -12,3 +12,4 @@ $conexao = new mysqli($dbhost, $dbusername, $dbpassword, $dbname);
 //else{
 //    echo"conexão estabelecida";
 //}
+?>

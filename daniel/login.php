@@ -1,3 +1,32 @@
+<?php
+    $login_status = false;
+if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
+    #com acesso
+
+    function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    }
+
+    include_once("config.php");
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $sql = "SELECT * FROM `cliente` WHERE email = '$email' AND senha = '$senha'";
+
+    $result = $conexao->query($sql);
+
+    if (mysqli_num_rows($result) < 1){
+    print("<div class='mensagem'> falha ao logar, tente novemente </div>");
+    }
+    else{
+    header('location: index.php');
+    $login_status == true;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,11 +40,18 @@
             background-color: #fff.34;
             color: #fff !important;
         }
+        .mensagem{
+            color: white;
+            diplay: absolute;
+            position: absolute;
+            margin-left: 45vw;
+            margin-top: 15vh;
+        }
     </style>
 </head>
 <body>
     <div class="tela_login">
-        <form action="testelogin.php" method="post" class="formlogin">
+        <form action="login.php" method="post" class="formlogin">
             <div class="flex_login">
             <h1>Login</h1>
             <p>Digite os dados de acesso abaixo</p>
@@ -31,7 +67,7 @@
             <input type="submit" name="submit" value="enviar">
             </div>
         </form>
-        <a id="a" href="index.php">voltar</a>
+        <a id="a" href="criar_conta.php">criar uma conta?</a>
     </div>
     </body>
 </html>

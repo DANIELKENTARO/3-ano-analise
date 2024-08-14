@@ -1,14 +1,11 @@
 <?php
-// Process registration form submission
 if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
 
-    // Sanitize user input
     $estado = sanitizeInput($_POST['estado']);
     $municipio = sanitizeInput($_POST['municipio']);
     $numero = sanitizeInput($_POST['numero']);
 
 
-    // Prepare and execute SQL query to insert user data
     $sql = "INSERT INTO carrinho (estado, municipio, numero) VALUES (?, ?, ?)";
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('sss', $estado, $municipio, $numero);
@@ -20,7 +17,6 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
         header('location: testelogin.php');
     }
 
-    $stmt->close();
 }
 ?>
 <!doctype html>
@@ -58,7 +54,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
 <header> 
     <div class="menu">
         <div>
-        <a href="index.html">
+        <a href="index.php">
             <li><img src="img/logo.png" class="imglogo" id="img1"></li>
         </a>
         </div>
@@ -77,7 +73,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
                 <div class="card">
                     <section>
                         <section><img src="img/Sem título.png" alt="" name="produto"></section>
-                        <section><div name="preco">R$ 00.00</div></section>
+                        <section><div name="preco">R$ 99,99</div></section>
                     </section>
                 </div>
             </div>

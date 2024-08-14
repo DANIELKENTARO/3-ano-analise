@@ -1,9 +1,7 @@
 <?php
-session_start();
 if (isset($_POST['submit'])) 
     include_once("config.php");
 
-// Function to sanitize user input
 function sanitizeInput($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -11,10 +9,8 @@ function sanitizeInput($data) {
     return $data;
 }
 
-// Process registration form submission
 if (isset($_POST['submit'])) {
 
-    // Sanitize user input
     $nome = sanitizeInput($_POST['nome']);
     $preco = sanitizeInput($_POST['preco']);
     $quantidade = sanitizeInput($_POST['quantidade']);
@@ -23,8 +19,8 @@ if (isset($_POST['submit'])) {
     $foto = sanitizeInput($_POST['foto']);
     $descricao = sanitizeInput($_POST['descricao']);
 
-    // Prepare and execute SQL query to insert user data
-    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, pk_id_cores, pk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param('sssssss', $nome, $preco, $quantidade, $cor, $categoria, $foto, $descricao);
 
@@ -34,7 +30,6 @@ if (isset($_POST['submit'])) {
         echo "<p class='error'>Falha ao cadastrar produto: " . $conexao->error . "</p>";
     }
 
-    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -69,12 +64,12 @@ if (isset($_POST['submit'])) {
             <label for="quantidade">Quantidade de produtos:</label>
             <input type="text" name="quantidade" placeholder="Quantidade de produtos" required>
             <label for="cor">Cores:</label>
-            <input type="text" name="cor" placeholder="Cores dispoíveis">
+            <input type="text" name="cor" placeholder="Digite um numero">
             </div>
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
-            <input type="text" name="categoria" placeholder="Escreva uma categoria">
+            <input type="text" name="categoria" placeholder="Digite um numero">
             <label for="foto">Foto do produto:</label>
             <input type="file" name="foto" placeholder="escolha uma foto" required>
             </div>

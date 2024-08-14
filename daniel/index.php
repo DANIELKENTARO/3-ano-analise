@@ -11,7 +11,7 @@
     <header> 
         <div class="menu">
             <div>
-            <a href="index.html">
+            <a href="index.php">
                 <li><img src="img/logo.png" class="imglogo" id="img1"></li>
             </a>
             </div>
@@ -32,150 +32,150 @@
             <div class="mainbloco">
                 <div class="bloco1" id="bloco">
             <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                 <section><li id="p1"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                    <section><label for="p1" class="titulo_descricao">preço 1</label></section>
+                    <section><label for="p1" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
             </div>
         <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
-                <section><li id="p2"><img src="img/logo.png" alt="lista de produtos"></li></section>
-                    <section><label for="p2" class="titulo_descricao">preço 2</label></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
+                <section><li id="p2"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
+                    <section><label for="p2" class="titulo_descricao">R$ 99,99</label></section>
 
                 </a>
         </div>
             <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                 <section><li id="p3"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                    <section><label for="p3" class="titulo_descricao">preço 3</label></section>
+                    <section><label for="p3" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
             </div>
         <div class="flex_produtos">
-            <a href="produto.html">
-                <section><div class="nome_produtos">nome produto</div></section>
+            <a href="produto.php">
+                <section><div class="nome_produtos">Lápis</div></section>
             <section><li id="p4"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                <section><label for="p4" class="titulo_descricao">preço 4</label></section>
+                <section><label for="p4" class="titulo_descricao">R$ 99,99</label></section>
             </a>
         </div>
             <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                 <section><li id="p5"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                    <section><label for="p5" class="titulo_descricao">preço 5</label></section>
+                    <section><label for="p5" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
             </div>
                     </div>
                 <div class="bloco2" id="bloco">
             <div class="flex_produtos">
-            <a href="produto.html">
-                <section><div class="nome_produtos">nome produto</div></section>
+            <a href="produto.php">
+                <section><div class="nome_produtos">Lápis</div></section>
             <section><li id="p6"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                <section><label for="p6" class="titulo_descricao">preço 6</label></section>
+                <section><label for="p6" class="titulo_descricao">R$ 99,99</label></section>
             </a>
         </div>
     <div class="flex_produtos">
-                <a href="produto.html">
-                <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                <section><div class="nome_produtos">Lápis</div></section>
             <section><li id="p7"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                <section><label for="p7" class="titulo_descricao">preço 7</label></section>
+                <section><label for="p7" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
     </div>
         <div class="flex_produtos">
-            <a href="produto.html">
-                <section><div class="nome_produtos">nome produto</div></section>
+            <a href="produto.php">
+                <section><div class="nome_produtos">Lápis</div></section>
             <section><li id="p8"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                <section><label for="p8" class="titulo_descricao">preço 8</label></section>
+                <section><label for="p8" class="titulo_descricao">R$ 99,99</label></section>
             </a>
         </div>
     <div class="flex_produtos">
-        <a href="produto.html">
-            <section><div class="nome_produtos">nome produto</div></section>
+        <a href="produto.php">
+            <section><div class="nome_produtos">Lápis</div></section>
         <section><li id="p9"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-            <section><label for="p9" class="titulo_descricao">preço 9</label></section>
+            <section><label for="p9" class="titulo_descricao">R$ 99,99</label></section>
         </a>
     </div>
         <div class="flex_produtos">
-            <a href="produto.html">
-                <section><div class="nome_produtos">nome produto</div></section>
+            <a href="produto.php">
+                <section><div class="nome_produtos">Lápis</div></section>
             <section><li id="p10"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                <section><label for="p10" class="titulo_descricao">preço 10</label></section>
+                <section><label for="p10" class="titulo_descricao">R$ 99,99</label></section>
             </a>
             </div>
                     </div>
                 <div class="bloco3" id="bloco">
                     <div class="flex_produtos">
-                        <a href="produto.html">
-                        <section><div class="nome_produtos">nome produto</div></section>
+                        <a href="produto.php">
+                        <section><div class="nome_produtos">Lápis</div></section>
                     <section><li id="p11"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                        <section><label for="p11" class="titulo_descricao">preço 11</label></section>
+                        <section><label for="p11" class="titulo_descricao">R$ 99,99</label></section>
                     </a>
                 </div>
             <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                 <section><li id="p12"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                    <section><label for="p12" class="titulo_descricao">preço 12</label></section>
+                    <section><label for="p12" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
             </div>
                 <div class="flex_produtos">
-                    <a href="produto.html">
-                        <section><div class="nome_produtos">nome produto</div></section>
+                    <a href="produto.php">
+                        <section><div class="nome_produtos">Lápis</div></section>
                     <section><li id="p13"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                        <section><label for="p13" class="titulo_descricao">preço 13</label></section>
+                        <section><label for="p13" class="titulo_descricao">R$ 99,99</label></section>
                     </a>
                 </div>
             <div class="flex_produtos">
-                <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                 <section><li id="p14"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                    <section><label for="p14" class="titulo_descricao">preço 14</label></section>
+                    <section><label for="p14" class="titulo_descricao">R$ 99,99</label></section>
                 </a>
             </div>
                 <div class="flex_produtos">
-                    <a href="produto.html">
-                        <section><div class="nome_produtos">nome produto</div></section>
+                    <a href="produto.php">
+                        <section><div class="nome_produtos">Lápis</div></section>
                     <section><li id="p15"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                        <section><label for="p15" class="titulo_descricao">preço 15</label></section>
+                        <section><label for="p15" class="titulo_descricao">R$ 99,99</label></section>
                     </a>
                     </div>
                     </div>
                 <div class="bloco4" id="bloco">
                         <div class="flex_produtos">
-                            <a href="produto.html">
-                            <section><div class="nome_produtos">nome produto</div></section>
+                            <a href="produto.php">
+                            <section><div class="nome_produtos">Lápis</div></section>
                         <section><li id="p16"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                            <section><label for="p16" class="titulo_descricao">preço 16</label></section>
+                            <section><label for="p16" class="titulo_descricao">R$ 99,99</label></section>
                         </a>
                     </div>
                 <div class="flex_produtos">
-                    <a href="produto.html">
-                        <section><div class="nome_produtos">nome produto</div></section>
+                    <a href="produto.php">
+                        <section><div class="nome_produtos">Lápis</div></section>
                     <section><li id="p17"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                        <section><label for="p17" class="titulo_descricao">preço 17</label></section>
+                        <section><label for="p17" class="titulo_descricao">R$ 99,99</label></section>
                     </a>
                 </div>
                     <div class="flex_produtos">
-                        <a href="produto.html">
-                            <section><div class="nome_produtos">nome produto</div></section>
+                        <a href="produto.php">
+                            <section><div class="nome_produtos">Lápis</div></section>
                         <section><li id="p18 "><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                            <section><label for="p18" class="titulo_descricao">preço 18</label></section>
+                            <section><label for="p18" class="titulo_descricao">R$ 99,99</label></section>
                         </a>
                     </div>
                 <div class="flex_produtos">
-                    <a href="produto.html">
-                    <section><div class="nome_produtos">nome produto</div></section>
+                    <a href="produto.php">
+                    <section><div class="nome_produtos">Lápis</div></section>
                     <section><li id="p19"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                        <section><label for="p19" class="titulo_descricao">preço 19</label></section>
+                        <section><label for="p19" class="titulo_descricao">R$ 99,99</label></section>
                     </a>
                 </div>
                     <div class="flex_produtos">
-                        <a href="produto.html">
-                            <section><div class="nome_produtos">nome produto</div></section>
+                        <a href="produto.php">
+                            <section><div class="nome_produtos">Lápis</div></section>
                         <section><li id="p20"><img src="img/Sem título.png" alt="lista de produtos"></li></section>
-                            <section><label for="p20" class="titulo_descricao">preço 20</label></section>
+                            <section><label for="p20" class="titulo_descricao">R$ 99,99</label></section>
                         </a>
                         </div>
                     </div>

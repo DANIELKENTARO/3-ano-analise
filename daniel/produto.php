@@ -17,7 +17,7 @@
             border: 1px solid rgb(111, 128, 180);
         }
         .img_produto{
-            width: 40vw;
+            width: 30vw;
         }
         .input_produtos{
             width: 20vw;
@@ -52,7 +52,7 @@
 
 <main class="main">
 <div class="produto_display">
-        <img src="img/teste.png" alt="erro" name="imagem" class="img_produto">
+        <img src="img/Sem título.png" alt="erro" name="imagem" class="img_produto">
         <div>
             <input type="number" name="numero_produtos" id="numero_produtos" class="input_produtos" placeholder="quantidade de produtos">
         </div>

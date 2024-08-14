@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_POST['submit'])) 
     include_once("config.php");
 
@@ -42,12 +41,11 @@ if (isset($_POST['submit'])) {
     $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $senha);
 
     if ($stmt->execute()) {
-        echo "<p class='success'>Usuário cadastrado com sucesso!</p>";
+        header('location: login.php');
     } else {
         echo "<p class='error'>Falha ao cadastrar usuário: " . $conexao->error . "</p>";
     }
 
-    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -92,7 +90,7 @@ if (isset($_POST['submit'])) {
             <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
             </div>
             <input type="submit" name="submit"></input>
-            <a href="testelogin.php">voltar</a>
+            <a href="index.php">voltar</a>
             </div>
         </form>
     </div>
