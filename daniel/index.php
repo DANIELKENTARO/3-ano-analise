@@ -185,7 +185,7 @@
     </main>
     <footer>
         <h2>todos os direitos reservados</h2>
-        <h4>pré-projeto feito por Daniel Kentaro 3°Ds <br> E-mail:daniel190207@gmail.com ou daniel.osaki@escola.pr.gov.br</h4>
+
     </footer>
 </body>
 </html>

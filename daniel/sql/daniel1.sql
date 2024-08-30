@@ -90,16 +90,9 @@ CREATE TABLE `cliente` (
   `telefone` varchar(16) DEFAULT NULL,
   `email` varchar(80) NOT NULL,
   `cep` varchar(9) NOT NULL,
-  `senha` varchar(225) NOT NULL
+  `senha` varchar(225) NOT NULL,
+  `tipo` int(1) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `cliente`
---
-
-INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
-('111.111.111-11', '(11) 11111-1111', '111@gmail.com', '11111-111', '11111111'),
-('123.456.789-15', '(58) 49938-0223', 'aaa@gmail.com', '12345-678', '11111111');
 
 -- --------------------------------------------------------
 
@@ -151,7 +144,7 @@ CREATE TABLE `produto` (
   `quantidade_produto` varchar(999) NOT NULL,
   `fk_id_cores` int(11) DEFAULT NULL,
   `fk_id_categorias` int(11) DEFAULT NULL,
-  `imagem` blob NOT NULL,
+  `imagem` varchar(225) NOT NULL,
   `descricao` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -226,6 +219,7 @@ ALTER TABLE `cores`
 --
 ALTER TABLE `historico`
   MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hora` date NOT NULL CURRENT_TIMESTAMP;
 
 --
 -- AUTO_INCREMENT for table `produto`

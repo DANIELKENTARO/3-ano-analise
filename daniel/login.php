@@ -19,7 +19,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
     $result = $conexao->query($sql);
 
     if (mysqli_num_rows($result) < 1){
-    print("<div class='mensagem'> falha ao logar, tente novemente </div>");
+    print("alert('Erro ao logar tente novamente');");
     }
     else{
     header('location: index.php');
@@ -42,7 +42,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
         }
         .mensagem{
             color: white;
-            diplay: absolute;
+            display: absolute;
             position: absolute;
             margin-left: 45vw;
             margin-top: 15vh;
