@@ -1,38 +1,58 @@
 <?php
+include_once('config.php');
 if (isset($_POST['submit'])) {
-    include_once("config.php");
     function conversordefloat($preco) {
         return floatval(str_replace(",", ".", $preco));
       }
-    function sanitizeInput($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+    // Função para upload de imagem (com tratamento de erros)
+    function uploadImagem($imagem) {
+        $target_dir = "img/";
+        $target_file = $target_dir . basename($imagem["name"]);
+
+        if (move_uploaded_file($imagem["tmp_name"], $target_file)) {
+            return $target_file;
+        } else {
+            echo "Erro ao fazer upload da imagem.";
+            return null;
+        }
     }
 
-    $nome = sanitizeInput($_POST['nome']);
-    $preco = sanitizeInput(conversordefloat($_POST['preco']));
-    $quantidade = sanitizeInput($_POST['quantidade']);
-    $cor = sanitizeInput($_POST['cor']);
-    $categoria = sanitizeInput($_POST['categoria']);
-    $target_dir = "img/";
-    $target_file = $target_dir . uniqid() . "_" . basename($_FILES["imagem"]["name"]);
-    move_uploaded_file($_FILES["imagem"]["name"], $target_file);
-    $descricao = sanitizeInput($_POST['descricao']);
+    $nome = $_POST['nome'];
+    $preco = conversordefloat($_POST['preco']);
+    $quantidade = $_POST['quantidade'];
+    $cor = $_POST['cor'];
+    $categoria = $_POST['categoria'];
+    $imagem = $_FILES["imagem"];
+    $descricao = $_POST['descricao'];
+    
+    
 
-    $sql = "INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssssss', $nome, $preco, $quantidade, $cor, $categoria, $target_file, $descricao);
-
-    if ($stmt->execute()) {
-        echo "<p class='success'>produto cadastrado com sucesso!</p>";
-    } else {
-        echo "<p class='error'>Falha ao cadastrar produto: " . $conexao->error . "</p>";
+    $imagem_path = null;
+    if (isset($imagem) && $imagem["error"] === 0) {
+        $imagem_path = uploadImagem($imagem);
+        if (!$imagem_path) {
+            $erros[] = "Erro ao enviar a imagem.";
+        }
     }
 
+    if ($imagem_path) {
+        $stmt = $conexao->prepare("INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $nome, $preco, $quantidade, $cor, $categoria, $imagem_path, $descricao);
+
+        // Executando a query
+        if ($stmt->execute()) {
+            echo "Produto cadastrado com sucesso";
+        } else {
+            echo "Erro ao inserir produto: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+
+    $conexao->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -50,7 +70,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div class="tela_login">
-        <form action="cadastro_produto.php" method="post" class="formlogin">
+        <form action="cadastro_produto.php" method="post" class="formlogin" enctype="multipart/form-data">
             <div class="flex_login">
             <h1>Cadastrar produto</h1>
 
@@ -58,21 +78,51 @@ if (isset($_POST['submit'])) {
             <label for="nome">Nome do produto:</label>
             <input type="text" name="nome" placeholder="Nome Produto" autofocus="true" required>
             <label for="preco">Preço do produto:</label>
-            <input type="text" name="preco" placeholder="R$ 00,00" autocomplete="on" maxlength="12" required>
+            <input type="number" placeholder="0.00" name="preco" step="0.01"  required>
             </div>
            
             <div class="formulario_input">
             <label for="quantidade">Quantidade de produtos:</label>
             <input type="text" name="quantidade" placeholder="Quantidade de produtos" required>
             <label for="cor">Cores:</label>
-            <input type="text" name="cor" placeholder="Digite um numero">
+            <select list="cor" name="cor" placeholder="cor">
+                <option value="1">Azul</option>
+                <option value="2">Amarelo</option>
+                <option value="3">Branco</option>
+                <option value="4">Bege</option>
+                <option value="5">Preto</option>
+                <option value="6">Vermelho</option>
+                <option value="7">Marronm</option>        
+            </select>
             </div>
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
-            <input type="text" name="categoria" placeholder="Digite um numero">
-            <label for="foto">Foto do produto:</label>
-            <input type="file" name="foto" placeholder="escolha uma foto" required>
+            <select id="categoria">
+                <option value="1">casual</option>
+                <option value="2">escolar</option>
+                <option value="3">escritório</option>
+                <option value="4">recreativo</option>
+                <option value="5">brinquedos</option>
+                <option value="6">relaxante</option>
+                <option value="7">formal</option>
+                <option value="8">formatura</option>
+                <option value="9">celular</option>
+                <option value="10">computadores</option>
+                <option value="11">componentes eletronicos</option>
+                <option value="12">pneus</option>
+                <option value="13">carros</option>
+                <option value="14">memes</option>
+                <option value="15">filmes</option>
+                <option value="16">séries</option>
+                <option value="17">televisões</option>
+                <option value="18">eletronico</option>
+                <option value="19">pelucia</option>
+                <option value="20">caro</option>
+                <option value="21">barato</option>
+        </select>
+            <label for="imagem">Foto do produto:</label>
+            <input type="file" name="imagem" placeholder="escolha uma foto" accept="daniel/img/*">
             </div>
             <div class="formulario_input">
             <label for="descricao">Adicione uma descrição:</label>

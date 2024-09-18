@@ -9,7 +9,12 @@ h1, h2, h4, h6 {
     text-align: center;
     color: rgb(200, 210, 220);
 }
-h1 {
+#h1 {
+
+    color: rgba(0, 0, 0, 0.76);
+    background-color: #ffffffd7;
+}
+h1{
     border-top: 1px solid rgb(60, 60, 60);
     border-bottom: 1px solid rgb(60, 60, 60);
     margin-bottom: 5vh;
@@ -63,6 +68,12 @@ button {
     min-width: 50vw;
     min-height: 60vh;
 }
+.img1{
+    margin: 1%;
+    border-radius: 19px;
+    max-width: 24vw;
+    max-height: 11vw;
+}
 ul {
     display: flex;
     justify-content: space-between;
@@ -87,7 +98,7 @@ footer {
     justify-content: space-around;
     background-image: linear-gradient(to top, rgb(30, 30, 30), rgb(60, 60, 60));
 }
-input {
+input, select {
     border-radius: 9px;
     background-color: #252545;
     border: 1px solid rgb(120, 120, 150);
@@ -212,8 +223,8 @@ li #p1 img {
 }
 .mainbloco {
     display: grid;
-    grid-template-rows: repeat(5, 19vw);
-    grid-template-columns: auto;
+    grid-template-columns: repeat(5, 19vw);
+    grid-template-rows: auto;
     row-gap: 3vw;
     align-items: center;
 }
@@ -234,7 +245,34 @@ li #p1 img {
     text-align: justify;
     color: rgb(190, 190, 210);
 }
-.flex_carrinho {
+.cards{
+    padding-left: 10vw;
+    background-color: #20206b94;
+    display: grid;
+    min-width: 19vw;
+    grid-template-columns: 24vw 24vw 24vw 24vw;
+    padding: 1vw 1vw 1vh 1vw ;
+}
+.card{
     display: flex;
+    border: 1px solid #ffffff;
     flex-direction: column;
+    min-width: 19vw;
+    margin: 1vw 1vw 1vh 1vw ;
+}
+.card_texto{
+    font-size: 120%;
+    text-align: center;
+    border-top: 1px solid #6d5151;
+    overflow: hidden ;
+    border-bottom: 1px solid #6d5151;
+}
+.card_titulo{
+    font-size: 120%;
+    text-align: center;
+    border: 1px solid #ffffff;
+    
+}
+.hide{
+    display: none;
 }
