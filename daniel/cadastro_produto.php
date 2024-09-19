@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
-            <select id="categoria">
+            <select id="categoria" name="categoria">
                 <option value="1">casual</option>
                 <option value="2">escolar</option>
                 <option value="3">escritório</option>
