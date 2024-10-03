@@ -27,7 +27,7 @@
 <?php
 $n = 0;
 include_once('config.php');
-$sql = "SELECT nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao FROM produto";
+$sql = "SELECT * FROM produto";
 $result = $conexao->query($sql);
 if (mysqli_num_rows($result) >= 1){
 
@@ -35,7 +35,8 @@ if (mysqli_num_rows($result) >= 1){
     while($row = $result->fetch_assoc()) {
       echo "<section class='card'>";
       $n += 1;
-      echo "<div> <h1 class='card_titulo'> Nome do produto: " . $row["nome_produto"] . "</h1></div>";
+      echo "<div> <h1 class='card_titulo'> ID do produto: " . $row["id_produto"] . "</h1></div>";
+      echo "<div> Nome do produto: " . $row["nome_produto"] . "</div>";
       echo "<div> <center><img src='" . $row["imagem"] . "' alt='Imagem' class='img1'><br></center>" . "</div>";
       echo "<div class='card_texto'>  Preço: R$" . $row["preco_produto"] . "</div>";
       echo "<div class='card_texto'> Quantidade: " . $row["quantidade_produto"] . "</div>";

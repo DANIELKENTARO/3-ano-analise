@@ -36,24 +36,17 @@ if (isset($_POST['submit'])){
             </div>
             <div class='cards'>
 <?php
+session_start();
 $n = 0;
-$nn = 63;
 include_once('config.php');
-$sql1 = "SELECT * FROM produto";
-$sql2 = "SELECT * FROM cores";
-$sql3 = "SELECT * FROM categorias";
-$result1 = $conexao->query($sql1);
-$result2 = $conexao->query($sql2);
-$result3 = $conexao->query($sql3);
-
-if (mysqli_num_rows($result1) >= 1){
-        while($row = $result1->fetch_assoc()) {
-            $nn +=1;
-            $n += 1;
+$sql = "SELECT * FROM produto";
+$result = $conexao->query($sql);
+if (mysqli_num_rows($result) >= 1){
+        while($row = $result->fetch_assoc()) {
             include_once('config.php');
-            $sqll = "UPDATE `produto` SET `produto` = $n WHERE `produto`.`id_produto` = $nn;";
-            $resulta = $conexao->query($sqll);
-            echo "<a href='1.php'><section class='card'>";
+            $n += 1;
+            echo "<a href='1.php'> <section class='card'>";
+            echo "<div><input type='hidden' name='id_produto' value='".$row["id_produto"]."'></div>";
             echo "<div> <h1 class='card_titulo'> Nome do produto: " . $row["nome_produto"] . "</h1></div>";
             echo "<div> <center><img src='" . $row["imagem"] . "' alt='Imagem' class='img1'><br></center>" . "</div>";
             echo "<div class='card_texto'>  Preço: R$" . $row["preco_produto"] . "</div>";

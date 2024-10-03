@@ -22,7 +22,7 @@ if (isset($_POST['add_to_cart'])) {
             if ($produto['id_produto'] == $id_produto) {
                 // Se o produto já estiver no carrinho, impede a adição novamente
                 $item_exists = true;
-                echo "<p>O produto já está no carrinho!</p>";
+                echo "<p class='erro'>O produto já está no carrinho!</p>";
                 break;
             }
         }
@@ -87,6 +87,23 @@ if (isset($_POST['remove_item'])) {
     </style>
 </head>
 <body>
+    
+<header> 
+        <div class="menu">
+            <div>
+            <a href="index.php">
+                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+            </a>
+            </div>
+        <div class="login">
+        <button><a href="login.php">login</a></button>
+        <button><a href="criar_conta.php">criar conta</a></button>
+            <div class="carrinho">
+        <a href="carrinho.php">
+            <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
+        </a>
+            </div>
+</header>
     <h1>Carrinho de Compras</h1>
     <?php if (!empty($_SESSION['carrinho'])): ?>
         <table>
