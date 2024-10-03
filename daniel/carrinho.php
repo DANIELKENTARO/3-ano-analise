@@ -1,101 +1,133 @@
 <?php
-if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
+session_start();
+// Adiciona produto ao carrinho
+if (isset($_POST['add_to_cart'])) {
+    $id_produto = $_POST['id_produto'];
+    $nome_produto = $_POST['nome_produto'];
+    $preco_produto = $_POST['preco_produto'];
+    $quantidade_produto = $_POST['quantidade_produto'];
 
-    $estado = sanitizeInput($_POST['estado']);
-    $municipio = sanitizeInput($_POST['municipio']);
-    $numero = sanitizeInput($_POST['numero']);
+    $item = array(
+        'id_produto' => $id_produto,
+        'nome_produto' => $nome_produto,
+        'preco_produto' => $preco_produto,
+        'quantidade_produto' => $quantidade_produto
+    );
 
-
-    $sql = "INSERT INTO carrinho (estado, municipio, numero) VALUES (?, ?, ?)";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sss', $estado, $municipio, $numero);
-
-    if ($stmt->execute()) {
-        header('location: confirmar_compra.php');
+    // Verifica se o carrinho já contém produtos
+    if (isset($_SESSION['carrinho'])) {
+        // Verifica se o produto já está no carrinho
+        $item_exists = false;
+        foreach ($_SESSION['carrinho'] as $produto) {
+            if ($produto['id_produto'] == $id_produto) {
+                // Se o produto já estiver no carrinho, impede a adição novamente
+                $item_exists = true;
+                echo "<p>O produto já está no carrinho!</p>";
+                break;
+            }
+        }
+        if (!$item_exists) {
+            $_SESSION['carrinho'][] = $item; // Adiciona o produto se ele não estiver no carrinho
+        }
+    } else {
+        // Cria o carrinho com o primeiro produto
+        $_SESSION['carrinho'][] = $item;
     }
-    else {
-        header('location: testelogin.php');
-    }
+}
 
+// Remove item do carrinho
+if (isset($_POST['remove_item'])) {
+    foreach ($_SESSION['carrinho'] as $key => $produto) {
+        if ($produto['id_produto'] == $_POST['id_produto']) {
+            unset($_SESSION['carrinho'][$key]);
+        }
+    }
 }
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.0">
-    <title>página</title>
+    <title>Carrinho de Compras</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        input{
-            background-color: #fff.34;
-            color: #fff !important;
-        }
-        .card{
-            margin-left: 1vw;
-            margin-right: 1vw;
-            gap: 1vh;
-            display: grid;
-            grid-row: auto;
-            grid-template-columns: auto auto auto auto auto;
-            grid-template-rows: auto;
-        }
-        .card img{
-            width: 19vw;
-        }
-        .cards section{
-            gap: 4vh;
-            border: 1px solid black;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: hsl(219, 54%, 33%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #20206b94;
+    }
+
+    tr:hover {
+        background-color: #554747;
+    }
+
+
+    td form {
+        display: inline-block;
+    }
+    .remove-btn:hover {
+            background-color: #c82333;
+    }
+    .finalizar-compra-btn:hover {
+        background-color: #0056b3;
+    }
     </style>
-    </head>
+</head>
 <body>
-<header> 
-    <div class="menu">
-        <div>
-        <a href="index.php">
-            <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-        </a>
-        </div>
-    <div class="login">
-    <button><a href="login.php">login</a></button>
-    <button><a href="criar_conta.php">criar conta</a></button>
-    <div class="carrinho">
-    <a href="carrinho.php">
-    <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
-    </a>
-    </div>
-</header>
-<main>
-        <div class="carrinho">
-            <div class="carrinho_produtos">
-                <div class="card">
-                    <section>
-                        <section><img src="img/Sem título.png" alt="" name="produto"></section>
-                        <section><div name="preco">R$ 99,99</div></section>
-                    </section>
-                </div>
-            </div>
-            <div class="formulario_carrinho">
-                <form action="confirmar_compra.php" method="post" class="formlogin">
-                    <div class="flex_login">
-                        <div class="formulario_input">
-                        <label for="estado">Estado:</label>
-                        <input type="text" nome="estado" placeholder="Digite o nome do seu estado" autofocus="false" required>
-                        </div>
-                        <div class="formulario_input">
-                        <label for="municipio">Municipio:</label>
-                        <input type="text" name="municipio" placeholder="Digite o nome da sua cidade" required>
-                        </div>
-                        <div class="formulario_input">
-                        <label for="numero">Número:</label>
-                        <input type="number" name="numero" minlength="1" placeholder="Digite o número da sua casa" required>
-                        </div>
-                        <input type="submit" value="finalizar compra">
-                </form>
-            </div>
-        </div>
-</main>
+    <h1>Carrinho de Compras</h1>
+    <?php if (!empty($_SESSION['carrinho'])): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $total_geral = 0;
+                foreach ($_SESSION['carrinho'] as $produto): 
+                    $total_produto = $produto['preco_produto'] * $produto['quantidade_produto'];
+                    $total_geral += $total_produto;
+                ?>
+                    <tr>
+                        <td><?php echo $produto['nome_produto']; ?></td>
+                        <td>R$<?php echo $produto['preco_produto']; ?></td>
+                        <td><?php echo $produto['quantidade_produto']; ?></td>
+                        <td>R$<?php echo $total_produto; ?></td>
+                        <td>
+                            <form method="POST" action="carrinho.php">
+                                <input type="hidden" name="id_produto" value="<?php echo $produto['id_produto']; ?>">
+                                <input type="submit" name="remove_item" class="remove-btn" value="Remover">
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <h2>Total: R$<?php echo $total_geral; ?></h2>
+    <?php else: ?>
+        <p>O carrinho está vazio.</p>
+    <?php endif; ?>
+<!-- Botão de Finalizar Compra -->
+<a href="confirmar_compra.php" class="finalizar-compra-btn"><button>Finalizar Compra</button></a>
+
+    <a href="1.php"><button>Voltar aos Produtos</button></a>
 </body>
 </html>

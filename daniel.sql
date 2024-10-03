@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 13-Jun-2024 às 16:20
--- Versão do servidor: 10.1.38-MariaDB
--- versão do PHP: 7.3.2
+-- Host: localhost:3306
+-- Tempo de geração: 03-Out-2024 às 11:40
+-- Versão do servidor: 8.0.33-0ubuntu0.20.04.2
+-- versão do PHP: 7.4.3-4ubuntu2.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `daniel1`
+-- Banco de dados: `daniel`
 --
 
 -- --------------------------------------------------------
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carrinho` (
-  `id_carrinho` int(11) NOT NULL,
-  `pk_cpf` varchar(14) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pk_id_produto` int(11) DEFAULT NULL,
-  `estado` varchar(2) NOT NULL,
-  `municipio` varchar(30) NOT NULL,
-  `bairro` varchar(60) NOT NULL,
-  `rua` varchar(70) NOT NULL,
-  `numero` int(10) NOT NULL
+  `id_carrinho` int NOT NULL,
+  `fk_cpf` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fk_id_produto` int DEFAULT NULL,
+  `estado` varchar(2) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `municipio` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `bairro` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `rua` varchar(70) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `numero` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -46,9 +46,38 @@ CREATE TABLE `carrinho` (
 --
 
 CREATE TABLE `categorias` (
-  `id_categorias` int(11) NOT NULL,
+  `id_categorias` int NOT NULL,
   `opcoes_categorias` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id_categorias`, `opcoes_categorias`) VALUES
+(1, 'casual'),
+(2, 'escolar'),
+(3, 'escritório'),
+(4, 'recreativo'),
+(5, 'brinquedos'),
+(6, 'relaxante'),
+(7, 'formal'),
+(8, 'formatura'),
+(9, 'celular'),
+(10, 'computadores'),
+(11, 'componentes eletronicos'),
+(12, 'pneus'),
+(13, 'carros'),
+(14, 'meme'),
+(15, 'filmes'),
+(16, 'séries'),
+(17, 'televisões'),
+(18, 'eletronico'),
+(19, 'pelucia'),
+(20, 'caro'),
+(21, 'barato'),
+(22, 'cameras'),
+(23, 'colorido');
 
 -- --------------------------------------------------------
 
@@ -61,15 +90,17 @@ CREATE TABLE `cliente` (
   `telefone` varchar(16) DEFAULT NULL,
   `email` varchar(80) NOT NULL,
   `cep` varchar(9) NOT NULL,
-  `senha` varchar(225) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `senha` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipo` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `cliente`
 --
 
-INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
-('123.456.789-10', '(99) 99999-9999', '123@gmail.com', '12345-678', '12345678');
+INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`, `tipo`) VALUES
+('123.424.324-33', '(12) 32131-2312', 'japa@gmail.com', '12334-234', '12345678', 1),
+('123.456.789-10', '(12) 3456-7891', '111@gmail.com', '12345-678', '12345678', 0);
 
 -- --------------------------------------------------------
 
@@ -78,8 +109,33 @@ INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`) VALUES
 --
 
 CREATE TABLE `cores` (
-  `id_cores` int(11) NOT NULL,
+  `id_cores` int NOT NULL,
   `opcoes_cores` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `cores`
+--
+
+INSERT INTO `cores` (`id_cores`, `opcoes_cores`) VALUES
+(1, 'azul'),
+(2, 'amarelo'),
+(3, 'branco'),
+(4, 'bege'),
+(5, 'preto'),
+(6, 'vermelho'),
+(7, 'marrom');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `historico`
+--
+
+CREATE TABLE `historico` (
+  `id_historico` int NOT NULL,
+  `data_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fk_id_carrinho` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -89,99 +145,131 @@ CREATE TABLE `cores` (
 --
 
 CREATE TABLE `produto` (
-  `id_produto` int(11) NOT NULL,
+  `id_produto` int NOT NULL,
   `nome_produto` varchar(80) NOT NULL,
-  `preco_produto` varchar(13) NOT NULL,
-  `quantidade_produto` varchar(999) NOT NULL,
-  `pk_id_cores` int(11) NOT NULL,
-  `pk_id_categorias` int(11) NOT NULL,
-  `foto_produto` blob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `preco_produto` decimal(10,2) NOT NULL,
+  `quantidade_produto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `fk_id_cores` int DEFAULT NULL,
+  `fk_id_categorias` int DEFAULT NULL,
+  `imagem` varchar(225) NOT NULL,
+  `descricao` text NOT NULL,
+  `produto` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Indexes for dumped tables
+-- Extraindo dados da tabela `produto`
+--
+
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`, `produto`) VALUES
+(1, 'Pedro', '23.00', '2', 3, 2, 'img/caminhoneiro4.jpg', '23', 1),
+(2, '12321', '12.00', '12', 4, 4, 'img/Sem título.png', '122121', 2),
+(3, '123213', '213.00', '123', 4, 15, 'img/image-removebg-preview.png', '123123', 3),
+(4, 'lápis', '1231.00', '2', 1, 1, 'img/image-removebg-preview.png', '2', 4),
+(5, 'lápis', '1231.00', '2', 1, 1, 'img/image-removebg-preview.png', '2', 5);
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `carrinho`
+-- Índices para tabela `carrinho`
 --
 ALTER TABLE `carrinho`
   ADD PRIMARY KEY (`id_carrinho`),
-  ADD KEY `pk_id_produto` (`pk_id_produto`),
-  ADD KEY `pk_cpf` (`pk_cpf`);
+  ADD KEY `pk_id_produto` (`fk_id_produto`),
+  ADD KEY `pk_cpf` (`fk_cpf`);
 
 --
--- Indexes for table `categorias`
+-- Índices para tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categorias`);
 
 --
--- Indexes for table `cliente`
+-- Índices para tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`cpf`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `cores`
+-- Índices para tabela `cores`
 --
 ALTER TABLE `cores`
   ADD PRIMARY KEY (`id_cores`);
 
 --
--- Indexes for table `produto`
+-- Índices para tabela `historico`
+--
+ALTER TABLE `historico`
+  ADD PRIMARY KEY (`id_historico`),
+  ADD KEY `pk_id_carrinho` (`fk_id_carrinho`);
+
+--
+-- Índices para tabela `produto`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`),
-  ADD KEY `pk_id_cores` (`pk_id_cores`),
-  ADD KEY `pk_id_categorias` (`pk_id_categorias`);
+  ADD KEY `pk_id_cores` (`fk_id_cores`),
+  ADD KEY `pk_id_categorias` (`fk_id_categorias`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `carrinho`
+-- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_carrinho` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categorias` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categorias` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `cores`
+-- AUTO_INCREMENT de tabela `cores`
 --
 ALTER TABLE `cores`
-  MODIFY `id_cores` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cores` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `produto`
+-- AUTO_INCREMENT de tabela `historico`
+--
+ALTER TABLE `historico`
+  MODIFY `id_historico` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_produto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
 -- Limitadores para a tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`pk_cpf`) REFERENCES `cliente` (`cpf`),
-  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`pk_id_produto`) REFERENCES `produto` (`id_produto`);
+  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`fk_cpf`) REFERENCES `cliente` (`cpf`),
+  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`fk_id_produto`) REFERENCES `produto` (`id_produto`);
+
+--
+-- Limitadores para a tabela `historico`
+--
+ALTER TABLE `historico`
+  ADD CONSTRAINT `pk_id_carrinho` FOREIGN KEY (`fk_id_carrinho`) REFERENCES `carrinho` (`id_carrinho`);
 
 --
 -- Limitadores para a tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD CONSTRAINT `pk_id_categorias` FOREIGN KEY (`pk_id_categorias`) REFERENCES `categorias` (`id_categorias`),
-  ADD CONSTRAINT `pk_id_cores` FOREIGN KEY (`pk_id_cores`) REFERENCES `cores` (`id_cores`);
+  ADD CONSTRAINT `pk_id_categorias` FOREIGN KEY (`fk_id_categorias`) REFERENCES `categorias` (`id_categorias`),
+  ADD CONSTRAINT `pk_id_cores` FOREIGN KEY (`fk_id_cores`) REFERENCES `cores` (`id_cores`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,4 +1,9 @@
-<!doctype html>
+
+<?php
+if (isset($_POST['submit'])){
+    $login_status == true;
+}
+?><!doctype html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -48,7 +53,7 @@ if (mysqli_num_rows($result1) >= 1){
             include_once('config.php');
             $sqll = "UPDATE `produto` SET `produto` = $n WHERE `produto`.`id_produto` = $nn;";
             $resulta = $conexao->query($sqll);
-            echo "<a href='$n.php'><section class='card'>";
+            echo "<a href='1.php'><section class='card'>";
             echo "<div> <h1 class='card_titulo'> Nome do produto: " . $row["nome_produto"] . "</h1></div>";
             echo "<div> <center><img src='" . $row["imagem"] . "' alt='Imagem' class='img1'><br></center>" . "</div>";
             echo "<div class='card_texto'>  Preço: R$" . $row["preco_produto"] . "</div>";

@@ -250,10 +250,12 @@ li #p1 img {
     background-color: #20206b94;
     display: grid;
     min-width: 19vw;
+    border-radius: 9px;
     grid-template-columns: 24vw 24vw 24vw 24vw;
     padding: 1vw 1vw 1vh 1vw ;
 }
 .card{
+    border-radius: 9px;
     display: flex;
     border: 1px solid #ffffff;
     flex-direction: column;
@@ -261,7 +263,7 @@ li #p1 img {
     margin: 1vw 1vw 1vh 1vw ;
 }
 .card_texto{
-    font-size: 120%;
+    font-size: absolute 120% !important;
     text-align: center;
     border-top: 1px solid #6d5151;
     overflow: hidden ;
@@ -270,7 +272,8 @@ li #p1 img {
 .card_titulo{
     font-size: 120%;
     text-align: center;
-    border: 1px solid #ffffff;
+    border-radius: 9px;
+    border: 1px 0px 1px 0px solid #ffffff;
     
 }
 .hide{

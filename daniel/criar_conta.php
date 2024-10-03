@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     $email = sanitizeInput($_POST['email']);
     $cep = sanitizeInput($_POST['cep']);
     $senha = sanitizeInput($_POST['senha']);
+    $tipo = sanitizeInput($_POST['tipo']);
 
 
     // Check if password meets minimum length requirement
@@ -36,9 +37,9 @@ if (isset($_POST['submit'])) {
     //$hashedPassword = password_hash($senha, PASSWORD_DEFAULT);
     
     // Prepare and execute SQL query to insert user data
-    $sql = "INSERT INTO cliente (cpf, telefone, email, cep, senha) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO cliente (cpf, telefone, email, cep, senha, tipo) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('sssss', $cpf, $telefone, $email, $cep, $senha);
+    $stmt->bind_param('ssssss', $cpf, $telefone, $email, $cep, $senha, $tipo);
 
     if ($stmt->execute()) {
         header('location: login.php');
@@ -87,6 +88,10 @@ if (isset($_POST['submit'])) {
             <div class="formulario_input">
             <label for="password">Senha:</label>
             <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
+            <select list="tipo" name="tipo" id="0">
+                <option name="tipo" value="0">cliente</option>
+                <option name="tipo" value="2">vendedor</option>
+            </select>
             </div>
             <input type="submit" name="submit"></input>
             <a href="index.php">voltar</a>

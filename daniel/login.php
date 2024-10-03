@@ -1,5 +1,5 @@
 <?php
-    $login_status = false;
+session_start();
 if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
     #com acesso
 
@@ -18,14 +18,24 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
 
     $result = $conexao->query($sql);
 
-    if (mysqli_num_rows($result) < 1){
-    print("alert('Erro ao logar tente novamente');");
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            // Verifica o tipo de usuário
+            if ($row['tipo'] == 1) {
+                // Login válido para administrador, redireciona para adm.php
+                header("Location: adm.php");
+            } elseif ($row['tipo'] == 2) {
+                // Login válido para cliente especial, redireciona para especial.php
+                header("Location: vendedor.php");
+            } else {
+                // Login válido para outro tipo de usuário, redireciona para home
+                header("Location: index.php");
+            }
+        } else {
+            echo "Email ou senha inválidos.";
+        }
     }
-    else{
-    header('location: index.php');
-    $login_status == true;
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

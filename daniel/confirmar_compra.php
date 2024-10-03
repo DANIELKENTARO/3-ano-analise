@@ -20,10 +20,6 @@ if (isset($_POST['submit']) && !empty($_POST['estado']) && !empty($_POST['munici
     //print_r($result);
 
 }
-else{
-    #sem acesso
-    header('location: criar_conta.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,10 +30,17 @@ else{
     <title></title>
 </head>
 <body>
-    <form action="index.php" method="get">
-        <h1>CONFIRMAR COMPRA?</h1>
-        <input type="submit" value="SIM" name="1"></input>
-        <input type="submit" value="NÃO" name="2"></input>
+    <form action="confirmar_compra" method="get">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
     </form>
 </body>
 </html>

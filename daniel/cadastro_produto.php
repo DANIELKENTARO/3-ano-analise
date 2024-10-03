@@ -86,40 +86,34 @@ if (isset($_POST['submit'])) {
             <input type="text" name="quantidade" placeholder="Quantidade de produtos" required>
             <label for="cor">Cores:</label>
             <select list="cor" name="cor" placeholder="cor">
-                <option value="1">Azul</option>
-                <option value="2">Amarelo</option>
-                <option value="3">Branco</option>
-                <option value="4">Bege</option>
-                <option value="5">Preto</option>
-                <option value="6">Vermelho</option>
-                <option value="7">Marronm</option>        
+<?php
+                    $row ="";
+                    include_once('config.php');
+                    $sql1 = "SELECT * FROM `cores`";
+                    $result = $conexao->query($sql1);
+                    if (mysqli_num_rows($result) >= 1){
+                        while($row = $result->fetch_assoc()) {
+                            echo "<option value='".$row["id_cores"]."'>".$row["opcoes_cores"]."</option>";
+                        }
+                    }
+?>
             </select>
             </div>
           
             <div class="formulario_input">
             <label for="categoria">Categoria:</label>
             <select id="categoria" name="categoria">
-                <option value="1">casual</option>
-                <option value="2">escolar</option>
-                <option value="3">escritório</option>
-                <option value="4">recreativo</option>
-                <option value="5">brinquedos</option>
-                <option value="6">relaxante</option>
-                <option value="7">formal</option>
-                <option value="8">formatura</option>
-                <option value="9">celular</option>
-                <option value="10">computadores</option>
-                <option value="11">componentes eletronicos</option>
-                <option value="12">pneus</option>
-                <option value="13">carros</option>
-                <option value="14">memes</option>
-                <option value="15">filmes</option>
-                <option value="16">séries</option>
-                <option value="17">televisões</option>
-                <option value="18">eletronico</option>
-                <option value="19">pelucia</option>
-                <option value="20">caro</option>
-                <option value="21">barato</option>
+<?php
+                    $row ="";
+                    include_once('config.php');
+                    $sql1 = "SELECT * FROM `categorias`";
+                    $result = $conexao->query($sql1);
+                    if (mysqli_num_rows($result) >= 1){
+                        while($row = $result->fetch_assoc()) {
+                            echo "<option value='".$row['id_categorias']."'>".$row["opcoes_categorias"]."</option>";
+                        }
+                    }
+?>
         </select>
             <label for="imagem">Foto do produto:</label>
             <input type="file" name="imagem" placeholder="escolha uma foto" accept="daniel/img/*">
