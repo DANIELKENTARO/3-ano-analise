@@ -123,7 +123,9 @@ if (isset($_POST['submit'])) {
             <input type="text" maxlength="200" name="descricao" placeholder="insira uma descrição" required>
         </div>
             <input type="submit" name="submit" id="submit"></input><br>
-            <a href="index.php">voltar</a>
+            <a href="index.php">voltar para a página principal</a><br>
+            <a href="cadastrarcor.php">cadastrar uma cor</a><br>
+            <a href="cadastrarcategoria.php">cadastrar uma categoria</a>
             </div>
         </form>
     </div>

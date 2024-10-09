@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 // Adiciona produto ao carrinho
 if (isset($_POST['add_to_cart'])) {
@@ -52,7 +52,8 @@ if (isset($_POST['remove_item'])) {
     <title>Carrinho de Compras</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-    table {
+       
+table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
@@ -75,6 +76,13 @@ if (isset($_POST['remove_item'])) {
     }
 
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: hsl(219, 54%, 33%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
     td form {
         display: inline-block;
     }
@@ -84,67 +92,72 @@ if (isset($_POST['remove_item'])) {
     .finalizar-compra-btn:hover {
         background-color: #0056b3;
     }
+
+
     </style>
 </head>
 <body>
-    
-<header> 
-        <div class="menu">
-            <div>
-            <a href="index.php">
-                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-            </a>
-            </div>
+<header>
+    <div class="menu">
+        <a href="index.php"><li><img src="img/logo.png" class="imglogo" id="img1"></li></a>
         <div class="login">
-        <button><a href="login.php">login</a></button>
-        <button><a href="criar_conta.php">criar conta</a></button>
+            <button><a href="login.php">login</a></button>
+            <button><a href="criar_conta.php">criar conta</a></button>
             <div class="carrinho">
-        <a href="carrinho.php">
-            <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
-        </a>
+                <a href="carrinho.php">
+                    <img src="img/carrinho.png" alt="Carrinho" id="img2">
+                </a>
             </div>
+        </div>
+    </div>
 </header>
-    <h1>Carrinho de Compras</h1>
-    <?php if (!empty($_SESSION['carrinho'])): ?>
-        <table>
-            <thead>
+<h1>Carrinho de Compras</h1>
+<?php if (!empty($_SESSION['carrinho'])): ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $total_geral = 0;
+            foreach ($_SESSION['carrinho'] as $produto): 
+                $total_produto = $produto['preco_produto'] * $produto['quantidade_produto'];
+                $total_geral += $total_produto;
+            ?>
                 <tr>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                    <th>Ações</th>
+                    <td><?php echo $produto['nome_produto']; ?></td>
+                    <td>R$<?php echo $produto['preco_produto']; ?></td>
+                    <td><?php echo $produto['quantidade_produto']; ?></td>
+                    <td>R$<?php echo $total_produto; ?></td>
+                    <td>
+                        <form method="POST" action="carrinho.php">
+                            <input type="hidden" name="id_produto" value="<?php echo $produto['id_produto']; ?>">
+                            <input type="submit" name="remove_item" class="remove-btn" value="Remover">
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                $total_geral = 0;
-                foreach ($_SESSION['carrinho'] as $produto): 
-                    $total_produto = $produto['preco_produto'] * $produto['quantidade_produto'];
-                    $total_geral += $total_produto;
-                ?>
-                    <tr>
-                        <td><?php echo $produto['nome_produto']; ?></td>
-                        <td>R$<?php echo $produto['preco_produto']; ?></td>
-                        <td><?php echo $produto['quantidade_produto']; ?></td>
-                        <td>R$<?php echo $total_produto; ?></td>
-                        <td>
-                            <form method="POST" action="carrinho.php">
-                                <input type="hidden" name="id_produto" value="<?php echo $produto['id_produto']; ?>">
-                                <input type="submit" name="remove_item" class="remove-btn" value="Remover">
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <h2>Total: R$<?php echo $total_geral; ?></h2>
-    <?php else: ?>
-        <p>O carrinho está vazio.</p>
-    <?php endif; ?>
-<!-- Botão de Finalizar Compra -->
-<a href="confirmar_compra.php" class="finalizar-compra-btn"><button>Finalizar Compra</button></a>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <h2>Total: R$<?php echo $total_geral; ?></h2>
+<?php else: ?>
+    <p>O carrinho está vazio.</p>
+<?php endif; ?>
 
-    <a href="1.php"><button>Voltar aos Produtos</button></a>
+<!-- Botão de Finalizar Compra -->
+<form action="confirmar_compra.php" method="POST">
+    <input type="hidden" name="total_geral" value="<?php echo $total_geral; ?>">
+    <?php foreach ($_SESSION['carrinho'] as $produto): ?>
+        <input type="hidden" name="produtos[]" value="<?php echo json_encode($produto); ?>">
+    <?php endforeach; ?>
+    <input type="submit" class="finalizar-compra-btn" value="Finalizar Compra">
+</form>
+<a href="1.php"><button>Voltar aos Produtos</button></a>
 </body>
 </html>

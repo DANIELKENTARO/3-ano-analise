@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 03-Out-2024 às 11:40
+-- Tempo de geração: 09-Out-2024 às 11:55
 -- Versão do servidor: 8.0.33-0ubuntu0.20.04.2
 -- versão do PHP: 7.4.3-4ubuntu2.23
 
@@ -31,13 +31,47 @@ SET time_zone = "+00:00";
 CREATE TABLE `carrinho` (
   `id_carrinho` int NOT NULL,
   `fk_cpf` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `fk_id_produto` int DEFAULT NULL,
+  `fk_id_carrinho_produtos` int DEFAULT NULL,
   `estado` varchar(2) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `municipio` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `bairro` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `rua` varchar(70) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `numero` int DEFAULT NULL
+  `numero` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `fk_cpf`, `fk_id_carrinho_produtos`, `estado`, `municipio`, `bairro`, `rua`, `numero`) VALUES
+(1, '123.456.789-10', NULL, '12', '123', '123', '123', '123'),
+(2, '123.456.789-10', NULL, '12', '123123', '123', '123', '123'),
+(3, '123.456.789-10', NULL, '12', '123', '123', '123', '123'),
+(4, '123.456.789-10', 4, '12', '123', '123', '123', '213'),
+(5, '123.456.789-10', 5, '12', '12', '12', '1', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carrinho_produtos`
+--
+
+CREATE TABLE `carrinho_produtos` (
+  `id_carrinho_produtos` int NOT NULL,
+  `fk_id_carrinho` int DEFAULT NULL,
+  `fk_id_produto` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `carrinho_produtos`
+--
+
+INSERT INTO `carrinho_produtos` (`id_carrinho_produtos`, `fk_id_carrinho`, `fk_id_produto`) VALUES
+(1, 1, NULL),
+(2, 2, NULL),
+(3, 3, NULL),
+(4, 4, NULL),
+(5, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -47,7 +81,7 @@ CREATE TABLE `carrinho` (
 
 CREATE TABLE `categorias` (
   `id_categorias` int NOT NULL,
-  `opcoes_categorias` varchar(225) NOT NULL
+  `opcoes_categorias` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -55,29 +89,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categorias`, `opcoes_categorias`) VALUES
-(1, 'casual'),
-(2, 'escolar'),
-(3, 'escritório'),
-(4, 'recreativo'),
-(5, 'brinquedos'),
-(6, 'relaxante'),
-(7, 'formal'),
-(8, 'formatura'),
-(9, 'celular'),
-(10, 'computadores'),
-(11, 'componentes eletronicos'),
-(12, 'pneus'),
-(13, 'carros'),
-(14, 'meme'),
-(15, 'filmes'),
-(16, 'séries'),
-(17, 'televisões'),
-(18, 'eletronico'),
-(19, 'pelucia'),
-(20, 'caro'),
-(21, 'barato'),
-(22, 'cameras'),
-(23, 'colorido');
+(1, 'escolar');
 
 -- --------------------------------------------------------
 
@@ -99,8 +111,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`, `tipo`) VALUES
-('123.424.324-33', '(12) 32131-2312', 'japa@gmail.com', '12334-234', '12345678', 1),
-('123.456.789-10', '(12) 3456-7891', '111@gmail.com', '12345-678', '12345678', 0);
+('123.123.123-12', '(12) 31231-2312', '111@gmail.com', '12312-312', '12345678', 0),
+('123.456.789-10', '(40) 40404-0404', 'japa@gmail.com', '12345-678', '12345678', 1),
+('321.231.232-11', '(12) 3121-3212', 'aaa@gmail.com', '31213-212', '12345678', 2);
 
 -- --------------------------------------------------------
 
@@ -110,7 +123,7 @@ INSERT INTO `cliente` (`cpf`, `telefone`, `email`, `cep`, `senha`, `tipo`) VALUE
 
 CREATE TABLE `cores` (
   `id_cores` int NOT NULL,
-  `opcoes_cores` varchar(225) NOT NULL
+  `opcoes_cores` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -118,13 +131,7 @@ CREATE TABLE `cores` (
 --
 
 INSERT INTO `cores` (`id_cores`, `opcoes_cores`) VALUES
-(1, 'azul'),
-(2, 'amarelo'),
-(3, 'branco'),
-(4, 'bege'),
-(5, 'preto'),
-(6, 'vermelho'),
-(7, 'marrom');
+(1, 'azul');
 
 -- --------------------------------------------------------
 
@@ -137,6 +144,22 @@ CREATE TABLE `historico` (
   `data_hora` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fk_id_carrinho` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `historico`
+--
+
+INSERT INTO `historico` (`id_historico`, `data_hora`, `fk_id_carrinho`) VALUES
+(1, '2024-10-09 14:40:22', 1),
+(2, '2024-10-09 14:40:23', 1),
+(3, '2024-10-09 14:42:46', 2),
+(4, '2024-10-09 14:42:47', 2),
+(5, '2024-10-09 14:44:59', 3),
+(6, '2024-10-09 14:45:00', 3),
+(7, '2024-10-09 14:49:29', 4),
+(8, '2024-10-09 14:49:30', 4),
+(9, '2024-10-09 14:53:18', 5),
+(10, '2024-10-09 14:53:19', 5);
 
 -- --------------------------------------------------------
 
@@ -152,20 +175,15 @@ CREATE TABLE `produto` (
   `fk_id_cores` int DEFAULT NULL,
   `fk_id_categorias` int DEFAULT NULL,
   `imagem` varchar(225) NOT NULL,
-  `descricao` text NOT NULL,
-  `produto` int DEFAULT NULL
+  `descricao` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`, `produto`) VALUES
-(1, 'Pedro', '23.00', '2', 3, 2, 'img/caminhoneiro4.jpg', '23', 1),
-(2, '12321', '12.00', '12', 4, 4, 'img/Sem título.png', '122121', 2),
-(3, '123213', '213.00', '123', 4, 15, 'img/image-removebg-preview.png', '123123', 3),
-(4, 'lápis', '1231.00', '2', 1, 1, 'img/image-removebg-preview.png', '2', 4),
-(5, 'lápis', '1231.00', '2', 1, 1, 'img/image-removebg-preview.png', '2', 5);
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`) VALUES
+(1, '123', '123.00', '123', 1, 1, 'img/image-removebg-preview.png', '123');
 
 --
 -- Índices para tabelas despejadas
@@ -176,14 +194,23 @@ INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidad
 --
 ALTER TABLE `carrinho`
   ADD PRIMARY KEY (`id_carrinho`),
-  ADD KEY `pk_id_produto` (`fk_id_produto`),
-  ADD KEY `pk_cpf` (`fk_cpf`);
+  ADD KEY `pk_cpf` (`fk_cpf`),
+  ADD KEY `fk_id_carrinho_produtos` (`fk_id_carrinho_produtos`);
+
+--
+-- Índices para tabela `carrinho_produtos`
+--
+ALTER TABLE `carrinho_produtos`
+  ADD PRIMARY KEY (`id_carrinho_produtos`),
+  ADD KEY `fk_id_carrinho` (`fk_id_carrinho`),
+  ADD KEY `fk_id_produto` (`fk_id_produto`);
 
 --
 -- Índices para tabela `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id_categorias`);
+  ADD PRIMARY KEY (`id_categorias`),
+  ADD UNIQUE KEY `opcoes_categorias` (`opcoes_categorias`);
 
 --
 -- Índices para tabela `cliente`
@@ -196,7 +223,8 @@ ALTER TABLE `cliente`
 -- Índices para tabela `cores`
 --
 ALTER TABLE `cores`
-  ADD PRIMARY KEY (`id_cores`);
+  ADD PRIMARY KEY (`id_cores`),
+  ADD UNIQUE KEY `opcoes_cores` (`opcoes_cores`);
 
 --
 -- Índices para tabela `historico`
@@ -210,8 +238,8 @@ ALTER TABLE `historico`
 --
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`),
-  ADD KEY `pk_id_cores` (`fk_id_cores`),
-  ADD KEY `pk_id_categorias` (`fk_id_categorias`);
+  ADD KEY `fk_id_cores` (`fk_id_cores`),
+  ADD KEY `fk_id_categorias` (`fk_id_categorias`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -221,31 +249,37 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_carrinho` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `carrinho_produtos`
+--
+ALTER TABLE `carrinho_produtos`
+  MODIFY `id_carrinho_produtos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categorias` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_categorias` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `cores`
 --
 ALTER TABLE `cores`
-  MODIFY `id_cores` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cores` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `historico`
 --
 ALTER TABLE `historico`
-  MODIFY `id_historico` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_historico` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id_produto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para despejos de tabelas
@@ -255,8 +289,15 @@ ALTER TABLE `produto`
 -- Limitadores para a tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`fk_cpf`) REFERENCES `cliente` (`cpf`),
-  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`fk_id_produto`) REFERENCES `produto` (`id_produto`);
+  ADD CONSTRAINT `fk_id_carrinho_produtos` FOREIGN KEY (`fk_id_carrinho_produtos`) REFERENCES `carrinho_produtos` (`id_carrinho_produtos`),
+  ADD CONSTRAINT `pk_cpf` FOREIGN KEY (`fk_cpf`) REFERENCES `cliente` (`cpf`);
+
+--
+-- Limitadores para a tabela `carrinho_produtos`
+--
+ALTER TABLE `carrinho_produtos`
+  ADD CONSTRAINT `carrinho_produtos_ibfk_1` FOREIGN KEY (`fk_id_carrinho`) REFERENCES `carrinho` (`id_carrinho`),
+  ADD CONSTRAINT `carrinho_produtos_ibfk_2` FOREIGN KEY (`fk_id_produto`) REFERENCES `produto` (`id_produto`);
 
 --
 -- Limitadores para a tabela `historico`
