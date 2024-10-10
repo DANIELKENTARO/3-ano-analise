@@ -53,7 +53,7 @@ if (isset($_POST['remove_item'])) {
     <link rel="stylesheet" href="css/style.css">
     <style>
        
-table {
+    table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
@@ -158,6 +158,6 @@ table {
     <?php endforeach; ?>
     <input type="submit" class="finalizar-compra-btn" value="Finalizar Compra">
 </form>
-<a href="1.php"><button>Voltar aos Produtos</button></a>
+<a href="index.php"><button>Voltar aos Produtos</button></a>
 </body>
 </html>

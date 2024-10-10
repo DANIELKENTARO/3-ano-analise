@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
     if ($stmt->execute()) {
         header('location: login.php');
     } else {
-        echo "<p class='error'>Falha ao cadastrar usuário: " . $conexao->error . "</p>";
+        echo "<p class='error'>Falha ao cadastrar usuário: </p>";
     }
 
 }

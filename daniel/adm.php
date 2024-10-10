@@ -7,15 +7,40 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <style>
+        button{
+            width: 24vw;
+            height: 4vh;
+            gap: 1vw;
+            border-radius: 6px;
+        }
+        button:hover{
+            color: white;
+            background-color: rgba(210, 210, 210);
+            border-color: rgba(210, 210, 210);
+        }
+    </style>
 </head>
 <body>
     <header>
-                <li style=".btn btn-danger me-5{float: left;}"><a href="sair.php" class="btn btn-danger me-5"><h3>Sair</h3></a></li>
         
+        <div class="menu">
+            <div>
+            <a href="index.php">
+                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+            </a>
+            </div>
+<div class="login">
+
+<li style=".btn btn-danger me-5{float: left;}"><a href="sair.php" class="btn btn-danger me-5"><h3>Sair</h3></a></li>
     </div>
     </header>
 
-
+<br>
+<br>
+<h1>Ações</h1>
+<br>
+<br>
     <center>
     <section class="contato">
     <a href="listacliente.php"><button>Lista de clientes</button></a>
