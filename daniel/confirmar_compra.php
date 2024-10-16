@@ -4,8 +4,11 @@ include_once("config.php");
 
 // Recebe os produtos do carrinho
 $produtos = isset($_POST['produtos']) ? $_POST['produtos'] : [];
+$cpf = isset($_SESSION['cpf']) ? $_SESSION['cpf'] : '';
 
-if (isset($_POST['submit'])) {
+// Recebe os produtos do carrinho
+$produtos = isset($_POST['produtos']) ? $_POST['produtos'] : [];
+if (isset($_POST['submit']) ) {
     $fk_cpf = $_POST['cpf'];
     $estado = $_POST['estado'];
     $municipio = $_POST['municipio'];
@@ -38,8 +41,6 @@ if (isset($_POST['submit'])) {
     $stmt_historico->bind_param("i", $fk_id_carrinho);
     $stmt_historico->execute();
 
-    // Atualiza o carrinho com o ID do primeiro produto (opcional)
-    // Se quiser associar um produto específico ao carrinho
     $stmt_update_carrinho = $conexao->prepare("UPDATE carrinho SET fk_id_carrinho_produtos = (SELECT id_carrinho_produtos FROM carrinho_produtos WHERE fk_id_carrinho = ? LIMIT 1) WHERE id_carrinho = ?");
     $stmt_update_carrinho->bind_param("ii", $fk_id_carrinho, $fk_id_carrinho);
     $stmt_update_carrinho->execute();
@@ -55,31 +56,46 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Confirmar Compra</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <div class="menu">
-        <a href="index.php"><li><img src="img/logo.png" class="imglogo" id="img1"></li></a>
-        <div class="login">
-            <button><a href="login.php">login</a></button>
-            <button><a href="criar_conta.php">criar conta</a></button>
-            <div class="carrinho">
-                <a href="carrinho.php">
-                    <img src="img/carrinho.png" alt="Carrinho" id="img2">
+<header> 
+            <div class="menu">
+                <div>
+                <a href="index.php">
+                    <li><img src="img/logo.png" class="imglogo" id="img1"></li>
                 </a>
-            </div>
+                </div>
+    <div class="login">
+    <?php 
+
+    if (empty($_SESSION['cpf'])) {
+        echo "<button><a href='login.php'>login</a></button>";
+    } else {
+        echo "<li style='float: left;'><a href='sair.php' class='btn btn-danger me-5'><h3>Sair</h3></a></li>";
+    }
+    ?>
+
+    <button><a href="criar_conta.php">criar conta</a></button>
+        <div class="carrinho">
+    <a href="carrinho.php">
+        <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
+    </a>
         </div>
-    </div>
 </header>
         <h1>Confirme a compra</h1>
     <form action="" method="post" class="formlogin">
     <div class="formulario_input">
         <label for="cpf">Cpf: </label>
-        <input type="text" name="cpf" placeholder="123.456.789-10" autocomplete="on" maxlength="14" autofocus="true" required>
-        <script src="java.js"></script>
+        <input type="text" name="cpf" placeholder="123.456.789-10" value="<?php echo htmlspecialchars($cpf); ?>" autocomplete="on" maxlength="14" required>
         <input type="hidden" name="produtos[]" value="<?php echo htmlspecialchars(json_encode($_SESSION['carrinho'])); ?>">
         <label for="estado">Estado: </label>
-        <input type="text" placeholder="Estado" maxlength="2" name="estado" required>
+        <input type="text" placeholder="Estado" maxlength="2" autofocus="true" name="estado" required>
         <label for="municipio">Municipio: </label>
         <input type="text" placeholder="Município" name="municipio" required>
         <label for="bairro">Bairro: </label>

@@ -16,22 +16,25 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
 
     $sql = "SELECT * FROM `cliente` WHERE email = '$email' AND senha = '$senha'";
 
+    $cpf = "SELECT cpf FROM `cliente` WHERE email = '$email' AND senha = '$senha'";
+
     $result = $conexao->query($sql);
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $_SESSION['cpf'] = $row['cpf']; // Armazena o CPF na sessão
 
-            // Verifica o tipo de usuário
-            if ($row['tipo'] == 1) {
-                // Login válido para administrador, redireciona para adm.php
-                header("Location: adm.php");
-            } elseif ($row['tipo'] == 2) {
-                // Login válido para cliente especial, redireciona para especial.php
-                header("Location: vendedor.php");
-            } else {
-                // Login válido para outro tipo de usuário, redireciona para home
-                header("Location: index.php");
-            }
+                // Verifica o tipo de usuário
+                if ($row['tipo'] == 1) {
+                    // Login válido para administrador, redireciona para adm.php
+                    header("Location: adm.php");
+                } elseif ($row['tipo'] == 2) {
+                    // Login válido para cliente especial, redireciona para especial.php
+                    header("Location: vendedor.php");
+                } else {
+                    // Login válido para outro tipo de usuário, redireciona para home
+                    header("Location: index.php");
+                }
         } else {
             echo "Email ou senha inválidos.";
         }

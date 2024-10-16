@@ -22,19 +22,30 @@
     </style>
 </head>
 <body>
-    <header>
-        
-        <div class="menu">
-            <div>
-            <a href="index.php">
-                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-            </a>
-            </div>
-<div class="login">
-
-<li style=".btn btn-danger me-5{float: left;}"><a href="sair.php" class="btn btn-danger me-5"><h3>Sair</h3></a></li>
-    </div>
-    </header>
+<header> 
+            <div class="menu">
+                <div>
+                <a href="index.php">
+                    <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+                </a>
+                </div>
+    <div class="login">
+    <?php 
+    
+    if (empty($_SESSION['cpf'])) {
+        echo "<button><a href='login.php'>login</a></button>";
+    } else {
+        echo "<li style='float: left;'><a href='sair.php' class='btn btn-danger me-5'><h3>Sair</h3></a></li>";
+    }
+    ?>
+    
+    <button><a href="criar_conta.php">criar conta</a></button>
+        <div class="carrinho">
+    <a href="carrinho.php">
+        <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
+    </a>
+        </div>
+</header>
 
 <br>
 <br>

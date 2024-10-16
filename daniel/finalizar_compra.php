@@ -11,6 +11,7 @@ if (isset($_GET['fk_id_carrinho'])) {
         $stmt_historico->bind_param("i", $fk_id_carrinho);
 
         if ($stmt_historico->execute()) {
+            $stmt_produto = $conexao->prepare("UPDATE produto SET quantidade =  where id_produtos = ?");
             header("location: index.php");
             exit();
         } else {
