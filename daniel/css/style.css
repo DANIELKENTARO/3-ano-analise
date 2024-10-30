@@ -248,6 +248,7 @@ li #p1 img {
 .cards{
     padding-left: 10vw;
     background-color: #20206b94;
+    overflow: hidden;
     display: grid;
     min-width: 19vw;
     border-radius: 9px;

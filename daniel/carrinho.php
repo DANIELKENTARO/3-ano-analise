@@ -3,7 +3,9 @@ session_start();
 // Adiciona produto ao carrinho
 if (empty($_SESSION['cpf'])) {
     header("location: login.php");
+    exit();
 }
+
 if (isset($_POST['add_to_cart'])) {
     $id_produto = $_POST['id_produto'];
     $nome_produto = $_POST['nome_produto'];
@@ -17,24 +19,24 @@ if (isset($_POST['add_to_cart'])) {
         'quantidade_produto' => $quantidade_produto
     );
 
-    // Verifica se o carrinho já contém produtos
-    if (isset($_SESSION['carrinho'])) {
-        // Verifica se o produto já está no carrinho
-        $item_exists = false;
-        foreach ($_SESSION['carrinho'] as $produto) {
-            if ($produto['id_produto'] == $id_produto) {
-                // Se o produto já estiver no carrinho, impede a adição novamente
-                $item_exists = true;
-                echo "<p class='erro'>O produto já está no carrinho!</p>";
-                break;
-            }
+    // Inicializa o carrinho se não existir
+    if (!isset($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = [];
+    }
+
+    // Verifica se o produto já está no carrinho
+    $item_exists = false;
+    foreach ($_SESSION['carrinho'] as $produto) {
+        if ($produto['id_produto'] == $id_produto) {
+            // Se o produto já estiver no carrinho, impede a adição novamente
+            $item_exists = true;
+            echo "<p class='erro'>O produto já está no carrinho!</p>";
+            break;
         }
-        if (!$item_exists) {
-            $_SESSION['carrinho'][] = $item; // Adiciona o produto se ele não estiver no carrinho
-        }
-    } else {
-        // Cria o carrinho com o primeiro produto
-        $_SESSION['carrinho'][] = $item;
+    }
+
+    if (!$item_exists) {
+        $_SESSION['carrinho'][] = $item; // Adiciona o produto se ele não estiver no carrinho
     }
 }
 
@@ -43,9 +45,11 @@ if (isset($_POST['remove_item'])) {
     foreach ($_SESSION['carrinho'] as $key => $produto) {
         if ($produto['id_produto'] == $_POST['id_produto']) {
             unset($_SESSION['carrinho'][$key]);
+            break; // Para evitar conflitos após a remoção
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -55,75 +59,67 @@ if (isset($_POST['remove_item'])) {
     <title>Carrinho de Compras</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-       
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        background-color: hsl(219, 54%, 33%);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: hsl(219, 54%, 33%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    th, td {
-        padding: 12px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-    }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
 
-    th {
-        background-color: #20206b94;
-    }
+        th {
+            background-color: #20206b94;
+        }
 
-    tr:hover {
-        background-color: #554747;
-    }
+        tr:hover {
+            background-color: #554747;
+        }
 
+        td form {
+            display: inline-block;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        background-color: hsl(219, 54%, 33%);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    td form {
-        display: inline-block;
-    }
-    .remove-btn:hover {
+        .remove-btn:hover {
             background-color: #c82333;
-    }
-    .finalizar-compra-btn:hover {
-        background-color: #0056b3;
-    }
+        }
 
-
+        .finalizar-compra-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 <header> 
-            <div class="menu">
-                <div>
-                <a href="index.php">
-                    <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-                </a>
-                </div>
-    <div class="login">
-    <?php 
-
-    if (empty($_SESSION['cpf'])) {
-        echo "<button><a href='login.php'>login</a></button>";
-    } else {
-        echo "<li style='float: left;'><a href='sair.php' class='btn btn-danger me-5'><h3>Sair</h3></a></li>";
-    }
-    ?>
-
-    <button><a href="criar_conta.php">criar conta</a></button>
-        <div class="carrinho">
-    <a href="carrinho.php">
-        <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">
-    </a>
+    <div class="menu">
+        <div>
+            <a href="index.php">
+                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+            </a>
         </div>
+        <div class="login">
+            <?php 
+            if (empty($_SESSION['cpf'])) {
+                echo "<button><a href='login.php'>login</a></button>";
+            } else {
+                echo "<li style='float: left;'><a href='sair.php' class='btn btn-danger me-5'><h3>Sair</h3></a></li>";
+            }
+            ?>
+            <button><a href="criar_conta.php">criar conta</a></button>
+            <div class="carrinho">
+                <a href="carrinho.php">
+                    <img src="img/carrinho.png" alt="Carrinho" id="img2">
+                </a>
+            </div>
+        </div>
+    </div>
 </header>
+
 <h1>Carrinho de Compras</h1>
 <?php if (!empty($_SESSION['carrinho'])): ?>
     <table>
@@ -147,7 +143,7 @@ if (isset($_POST['remove_item'])) {
                     <td><?php echo $produto['nome_produto']; ?></td>
                     <td>R$<?php echo $produto['preco_produto']; ?></td>
                     <td><?php echo $produto['quantidade_produto']; ?></td>
-                    <td>R$<?php echo $total_produto; ?></td>
+                    <td>R$<?php echo number_format($total_produto, 2, ',', '.'); ?></td>
                     <td>
                         <form method="POST" action="carrinho.php">
                             <input type="hidden" name="id_produto" value="<?php echo $produto['id_produto']; ?>">
@@ -158,7 +154,7 @@ if (isset($_POST['remove_item'])) {
             <?php endforeach; ?>
         </tbody>
     </table>
-    <h2>Total: R$<?php echo $total_geral; ?></h2>
+    <h2>Total: R$<?php echo number_format($total_geral, 2, ',', '.'); ?></h2>
 <?php else: ?>
     <p>O carrinho está vazio.</p>
 <?php endif; ?>
@@ -166,9 +162,11 @@ if (isset($_POST['remove_item'])) {
 <!-- Botão de Finalizar Compra -->
 <form action="confirmar_compra.php" method="POST">
     <input type="hidden" name="total_geral" value="<?php echo $total_geral; ?>">
-    <?php foreach ($_SESSION['carrinho'] as $produto): ?>
-        <input type="hidden" name="produtos[]" value="<?php echo json_encode($produto); ?>">
-    <?php endforeach; ?>
+    <?php if (!empty($_SESSION['carrinho'])): ?>
+        <?php foreach ($_SESSION['carrinho'] as $produto): ?>
+            <input type="hidden" name="produtos[]" value="<?php echo json_encode($produto); ?>">
+        <?php endforeach; ?>
+    <?php endif; ?>
     <input type="submit" class="finalizar-compra-btn" value="Finalizar Compra">
 </form>
 <a href="index.php"><button>Voltar aos Produtos</button></a>
