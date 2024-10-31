@@ -1,57 +1,4 @@
-<?php
-include_once('config.php');
-if (isset($_POST['submit'])) {
-    function conversordefloat($preco) {
-        return floatval(str_replace(",", ".", $preco));
-      }
-    // Função para upload de imagem (com tratamento de erros)
-    function uploadImagem($imagem) {
-        $target_dir = "img/";
-        $target_file = $target_dir . basename($imagem["name"]);
 
-        if (move_uploaded_file($imagem["tmp_name"], $target_file)) {
-            return $target_file;
-        } else {
-            echo "Erro ao fazer upload da imagem.";
-            return null;
-        }
-    }
-
-    $nome = $_POST['nome'];
-    $preco = conversordefloat($_POST['preco']);
-    $quantidade = $_POST['quantidade'];
-    $cor = $_POST['cor'];
-    $categoria = $_POST['categoria'];
-    $imagem = $_FILES["imagem"];
-    $descricao = $_POST['descricao'];
-    
-    
-
-    $imagem_path = null;
-    if (isset($imagem) && $imagem["error"] === 0) {
-        $imagem_path = uploadImagem($imagem);
-        if (!$imagem_path) {
-            $erros[] = "Erro ao enviar a imagem.";
-        }
-    }
-
-    if ($imagem_path) {
-        $stmt = $conexao->prepare("INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $nome, $preco, $quantidade, $cor, $categoria, $imagem_path, $descricao);
-
-        // Executando a query
-        if ($stmt->execute()) {
-            echo "Produto cadastrado com sucesso";
-        } else {
-            echo "Erro ao inserir produto: " . $stmt->error;
-        }
-
-        $stmt->close();
-    }
-
-    $conexao->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -122,7 +69,60 @@ if (isset($_POST['submit'])) {
             <label for="descricao">Adicione uma descrição:</label>
             <input type="text" maxlength="200" name="descricao" placeholder="insira uma descrição" required>
         </div>
-            <input type="submit" name="submit" id="submit"></input><br>
+            <input type="submit" name="submit" id="submit"></input><br><?php
+    include_once('config.php');
+    if (isset($_POST['submit'])) {
+        function conversordefloat($preco) {
+            return floatval(str_replace(",", ".", $preco));
+        }
+        // Função para upload de imagem (com tratamento de erros)
+        function uploadImagem($imagem) {
+            $target_dir = "img/";
+            $target_file = $target_dir . basename($imagem["name"]);
+
+            if (move_uploaded_file($imagem["tmp_name"], $target_file)) {
+                return $target_file;
+            } else {
+                echo "Erro ao fazer upload da imagem.";
+                return null;
+            }
+        }
+
+        $nome = $_POST['nome'];
+        $preco = conversordefloat($_POST['preco']);
+        $quantidade = $_POST['quantidade'];
+        $cor = $_POST['cor'];
+        $categoria = $_POST['categoria'];
+        $imagem = $_FILES["imagem"];
+        $descricao = $_POST['descricao'];
+    
+    
+
+        $imagem_path = null;
+        if (isset($imagem) && $imagem["error"] === 0) {
+            $imagem_path = uploadImagem($imagem);
+            if (!$imagem_path) {
+                $erros[] = "Erro ao enviar a imagem.";
+            }
+        }
+
+        if ($imagem_path) {
+            $stmt = $conexao->prepare("INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $nome, $preco, $quantidade, $cor, $categoria, $imagem_path, $descricao);
+
+            // Executando a query
+            if ($stmt->execute()) {
+                echo "Produto cadastrado com sucesso";
+            } else {
+                echo "Erro ao inserir produto: " . $stmt->error;
+            }
+
+            $stmt->close();
+        }
+
+        $conexao->close();
+    }
+?>
             <a href="index.php">voltar para a página principal</a><br>
             <a href="cadastrarcor.php">cadastrar uma cor</a><br>
             <a href="cadastrarcategoria.php">cadastrar uma categoria</a>

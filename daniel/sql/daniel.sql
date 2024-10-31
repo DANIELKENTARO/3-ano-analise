@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30/10/2024 às 16:11
+-- Tempo de geração: 31/10/2024 às 13:18
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -77,7 +77,11 @@ INSERT INTO `carrinho` (`id_carrinho`, `fk_cpf`, `fk_id_carrinho_produtos`, `est
 (32, '123.456.789-10', 34, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
 (33, '123.123.123-12', 35, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
 (34, '123.456.789-10', 36, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
-(35, '123.123.123-12', 37, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043');
+(35, '123.123.123-12', 37, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
+(36, '123.123.123-12', 38, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
+(37, '123.123.123-12', 39, 'pr', 'cascavel', 'centro', 'avenida brasil', '24234'),
+(38, '321.231.232-11', 40, 'pr', 'cascavel', 'centro', 'avenida brasil', '1043'),
+(39, '123.123.123-12', 41, 'pr', 'ca', 'centro', 'avenida brasil', '1043');
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,11 @@ INSERT INTO `carrinho_produtos` (`id_carrinho_produtos`, `fk_id_carrinho`, `fk_i
 (34, 32, NULL),
 (35, 33, NULL),
 (36, 34, NULL),
-(37, 35, NULL);
+(37, 35, NULL),
+(38, 36, NULL),
+(39, 37, NULL),
+(40, 38, NULL),
+(41, 39, NULL);
 
 -- --------------------------------------------------------
 
@@ -209,16 +217,7 @@ CREATE TABLE `historico` (
 --
 
 INSERT INTO `historico` (`id_historico`, `data_hora`, `fk_id_carrinho`) VALUES
-(1, '2024-10-30 14:57:02', 30),
-(2, '2024-10-30 14:57:02', 30),
-(3, '2024-10-30 15:00:07', 31),
-(4, '2024-10-30 15:00:08', 31),
-(5, '2024-10-30 15:04:29', 32),
-(6, '2024-10-30 15:04:29', 32),
-(7, '2024-10-30 15:04:45', 33),
-(8, '2024-10-30 15:04:46', 33),
-(9, '2024-10-30 15:09:45', 34),
-(10, '2024-10-30 15:10:45', 35);
+(1, '2024-10-31 12:17:23', 39);
 
 -- --------------------------------------------------------
 
@@ -242,7 +241,38 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`) VALUES
-(1, '123', 123.00, '123', 1, 1, 'img/image-removebg-preview.png', '123');
+(3, 'caneta', 2.50, '100', 1, 1, 'img/Sem título.png', '1'),
+(4, 'caneta', 2.50, '123', 1, 1, 'img/Sem título.png', '123'),
+(5, 'caneta', 2.50, '123134', 1, 1, 'img/Sem título.png', '123'),
+(6, 'caneta', 2.50, '123', 1, 1, 'img/Sem título.png', '123'),
+(7, 'anthony', 123.00, '123', 1, 1, 'img/teste.webp', '123'),
+(8, 'anthony', 213.00, '123', 1, 1, 'img/teste.webp', '213'),
+(9, 'anthony', 44134.00, '124', 1, 1, 'img/escuela fofff.webp', '234'),
+(24, 'anthony', 44134.00, '124', 1, 1, 'img/escuela fofff.webp', '234'),
+(25, 'anthony', 44134.00, '124', 1, 1, 'img/escuela fofff.webp', '234'),
+(26, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(27, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(28, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(29, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(30, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(31, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(32, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(33, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(34, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(35, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(36, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(37, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(38, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(39, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(40, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(41, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(42, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(43, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(44, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(45, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(46, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(47, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324'),
+(48, 'anthony', 24434.00, '34', 1, 1, 'img/Sem título.png', '324');
 
 --
 -- Índices para tabelas despejadas
@@ -308,13 +338,13 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de tabela `carrinho_produtos`
 --
 ALTER TABLE `carrinho_produtos`
-  MODIFY `id_carrinho_produtos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_carrinho_produtos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -332,13 +362,13 @@ ALTER TABLE `cores`
 -- AUTO_INCREMENT de tabela `historico`
 --
 ALTER TABLE `historico`
-  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Restrições para tabelas despejadas

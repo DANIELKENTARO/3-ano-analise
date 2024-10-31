@@ -9,8 +9,9 @@ if (empty($cpf)) {
     exit();
 }
 
-// Consulta para obter apenas a data_hora do histórico de compras do usuário
-$sql = "SELECT h.data_hora 
+// Consulta para obter a data_hora e o endereço completo do histórico de compras do usuário
+$sql = "SELECT h.data_hora, 
+               CONCAT( c.estado, ', ', c.municipio, ', ',c.bairro, ', ', c.rua, ', ', c.numero) AS endereco 
         FROM historico h
         JOIN carrinho c ON h.fk_id_carrinho = c.id_carrinho
         WHERE c.fk_cpf = ?";
@@ -35,28 +36,28 @@ $result = $stmt->get_result();
             margin-top: 20px;
         }
         th, td {
-            border: 1px solid #aaa; /* Cor da borda */
+            border: 1px solid #aaa;
             padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #2c2f33; /* Cor de fundo para o cabeçalho */
-            color: #ffffff; /* Texto do cabeçalho em branco */
+            background-color: #2c2f33;
+            color: #ffffff;
         }
         tr:nth-child(even) {
-            background-color: #e0e0e0; /* Cor de fundo para linhas pares */
-            color: #333333; /* Texto das linhas pares em cinza escuro */
+            background-color: #e0e0e0;
+            color: #333333;
         }
         tr:nth-child(odd) {
-            background-color: #d0d0d0; /* Cor de fundo para linhas ímpares */
-            color: #333333; /* Texto das linhas ímpares em cinza escuro */
+            background-color: #d0d0d0;
+            color: #333333;
         }
         tr:hover {
-            background-color: #b0b0b0; /* Cor de fundo ao passar o mouse */
-            color: #ffffff; /* Texto ao passar o mouse em branco */
+            background-color: #b0b0b0;
+            color: #ffffff;
         }
         td {
-            font-size: 16px; /* Tamanho da fonte das células */
+            font-size: 16px;
         }
         caption {
             margin-bottom: 10px;
@@ -64,43 +65,43 @@ $result = $stmt->get_result();
             font-weight: bold;
         }
         .dropdown {
-    position: relative;
-    display: inline-block;
-}
+            position: relative;
+            display: inline-block;
+        }
 
-.dropbtn {
-    background-color: #4CAF50; /* Verde */
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
+        .dropbtn {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-    </style>
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+</style>
 </head>
 <body>
 <header> 
@@ -139,16 +140,18 @@ $result = $stmt->get_result();
     <table>
         <tr>
             <th>Data e Hora</th>
+            <th>Endereço</th>
         </tr>
         <?php if ($result->num_rows > 0): ?>
             <?php while($row = $result->fetch_assoc()): ?>
             <tr>
                 <td><?php echo htmlspecialchars($row['data_hora']); ?></td>
+                <td><?php echo htmlspecialchars($row['endereco']); ?></td>
             </tr>
             <?php endwhile; ?>
         <?php else: ?>
             <tr>
-                <td>Nenhum registro encontrado no seu histórico de compras.</td>
+                <td colspan="2">Nenhum registro encontrado no seu histórico de compras.</td>
             </tr>
         <?php endif; ?>
     </table>

@@ -1,17 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="tela_login">
+    <a href="index.php"><h3>Voltar</h3></a>
+
+        <form action="criar_conta.php" method="post" class="formlogin">
+            <div class="flex_login">
+            <h1>Criar Conta</h1>
+            <p>Digite seus dados para criar sua conta</p>
+          
+            <div class="formulario_input">
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" placeholder="123.456.789.10" autocomplete="on" maxlength="14" autofocus="true" require>
+            <script src="java.js"></script>
+            <label for="tel">Telefone:</label>
+            <input type="tel" name="telefone" placeholder="(00)00000-0000" onkeypress="mask(this, mphone);" maxlength="16">
+            </div>
+           
+            <div class="formulario_input">
+            <label for="Email">E-mail:</label>
+            <input type="email" name="email" placeholder="digite seu email" maxlength="80" require>
+            <label for="cep">Cep:</label>
+            <input type="text" name="cep" placeholder="digite seu cep" onkeyup="handleZipCode(event)" maxlength="9">
+            </div>
+          
+            <div class="formulario_input">
+            <label for="password">Senha:</label>
+            <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
+            <select list="tipo" name="tipo" id="0">
+                <option name="tipo" value="0">cliente</option>
+                <option name="tipo" value="2">vendedor</option>
+            </select>
+            </div>
+            <input type="submit" name="submit"></input>
 <?php
-if (isset($_POST['submit'])) 
+    if (isset($_POST['submit'])) 
     include_once("config.php");
 
-// Function to sanitize user input
-function sanitizeInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+    // Function to sanitize user input
+    function sanitizeInput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
-// Process registration form submission
-if (isset($_POST['submit'])) {
+    // Process registration form submission
+    if (isset($_POST['submit'])) {
 
     // Sanitize user input
     $cpf = sanitizeInput($_POST['cpf']);
@@ -47,54 +95,8 @@ if (isset($_POST['submit'])) {
         echo "<p class='error'>Falha ao cadastrar usuário: </p>";
     }
 
-}
+    }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        input{
-            background-color: #fff.34;
-            color: #fff !important;
-        }
-    </style>
-</head>
-<body>
-    <div class="tela_login">
-        <form action="criar_conta.php" method="post" class="formlogin">
-            <div class="flex_login">
-            <h1>Criar Conta</h1>
-            <p>Digite seus dados para criar sua conta</p>
-          
-            <div class="formulario_input">
-            <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" placeholder="123.456.789.10" autocomplete="on" maxlength="14" autofocus="true" require>
-            <script src="java.js"></script>
-            <label for="tel">Telefone:</label>
-            <input type="tel" name="telefone" placeholder="(00)00000-0000" onkeypress="mask(this, mphone);" maxlength="16">
-            </div>
-           
-            <div class="formulario_input">
-            <label for="Email">E-mail:</label>
-            <input type="email" name="email" placeholder="digite seu email" maxlength="80" require>
-            <label for="cep">Cep:</label>
-            <input type="text" name="cep" placeholder="digite seu cep" onkeyup="handleZipCode(event)" maxlength="9">
-            </div>
-          
-            <div class="formulario_input">
-            <label for="password">Senha:</label>
-            <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
-            <select list="tipo" name="tipo" id="0">
-                <option name="tipo" value="0">cliente</option>
-                <option name="tipo" value="2">vendedor</option>
-            </select>
-            </div>
-            <input type="submit" name="submit"></input>
-            <a href="index.php">voltar</a>
             </div>
         </form>
     </div>

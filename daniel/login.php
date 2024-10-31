@@ -1,6 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        input{
+            background-color: #fff.34;
+            color: #fff !important;
+        }
+        .mensagem{
+            color: red;
+            display: absolute;
+            position: absolute;
+            margin-left: 45vw;
+            margin-top: 15vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="tela_login">
+        <header class="login">
+            <a id="" href="index.php" style="float:left; display:absolute;"><h3>Voltar</h3></a>
+        </header>
+        <form action="login.php" method="post" class="formlogin">
+            <div class="flex_login">
+            <h1>Login</h1>
+            <p>Digite os dados de acesso abaixo</p>
+            <div class="formulario_input">
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" placeholder="digite seu email" required autofocus="true" >
+            </div>
+            <div class="formulario_input">
+            <label for="senha">senha:</label>
+            <input type="password" id="password" name="senha" placeholder="digite sua senha" required>
+            </div>
+
+            <a href="" onclick="chora()"><h6>esqueci minha senha</h6></a> <br>
+            <script>
+                function chora(){
+                    alert("Chora que doi menos");
+                }
+            </script>
+            <input type="submit" name="submit" value="enviar">
 <?php
-session_start();
-if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
+    session_start();
+    if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])){
     #com acesso
 
     function sanitizeInput($data) {
@@ -40,47 +88,9 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
         }
     }
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        input{
-            background-color: #fff.34;
-            color: #fff !important;
-        }
-        .mensagem{
-            color: white;
-            display: absolute;
-            position: absolute;
-            margin-left: 45vw;
-            margin-top: 15vh;
-        }
-    </style>
-</head>
-<body>
-    <div class="tela_login">
-        <form action="login.php" method="post" class="formlogin">
-            <div class="flex_login">
-            <h1>Login</h1>
-            <p>Digite os dados de acesso abaixo</p>
-            <div class="formulario_input">
-            <label for="email">E-mail:</label>
-            <input type="email" name="email" placeholder="digite seu email" required autofocus="true" >
-            </div>
-            <div class="formulario_input">
-            <label for="senha">senha:</label>
-            <input type="password" id="password" name="senha" placeholder="digite sua senha" required>
-            </div>
-            <a href="#"><h6>esqueci minha senha</h6></a> <br>
-            <input type="submit" name="submit" value="enviar">
+        <a id="a" href="criar_conta.php">criar uma conta</a>
             </div>
         </form>
-        <a id="a" href="criar_conta.php">criar uma conta?</a>
-    </div>
+        </div>
     </body>
 </html>
