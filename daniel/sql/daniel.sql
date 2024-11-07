@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/10/2024 às 14:36
+-- Tempo de geração: 07/11/2024 às 13:17
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,6 +38,13 @@ CREATE TABLE `carrinho` (
   `numero` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id_carrinho`, `fk_cpf`, `fk_id_carrinho_produtos`, `estado`, `municipio`, `bairro`, `rua`, `numero`) VALUES
+(41, '123.123.123-12', 43, 'PR', 'Cascavel', 'centro', 'avenida Brasil', '2084');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,13 @@ CREATE TABLE `carrinho_produtos` (
   `fk_id_carrinho` int(11) DEFAULT NULL,
   `fk_id_produto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `carrinho_produtos`
+--
+
+INSERT INTO `carrinho_produtos` (`id_carrinho_produtos`, `fk_id_carrinho`, `fk_id_produto`) VALUES
+(43, 41, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,6 +136,13 @@ CREATE TABLE `historico` (
   `fk_id_carrinho` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Despejando dados para a tabela `historico`
+--
+
+INSERT INTO `historico` (`id_historico`, `data_hora`, `fk_id_carrinho`) VALUES
+(3, '2024-11-07 12:01:26', 41);
+
 -- --------------------------------------------------------
 
 --
@@ -136,62 +157,61 @@ CREATE TABLE `produto` (
   `fk_id_cores` int(11) DEFAULT NULL,
   `fk_id_categorias` int(11) DEFAULT NULL,
   `imagem` varchar(225) NOT NULL,
-  `descricao` text NOT NULL
+  `descricao` text NOT NULL,
+  `cpf` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`) VALUES
-(49, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(50, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(51, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(52, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(53, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(54, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(55, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(56, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(57, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(58, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(59, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(60, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(61, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(62, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(63, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(64, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(65, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(66, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(67, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(68, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(69, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(70, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(71, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(72, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(73, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(74, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(75, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(76, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(77, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(78, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(79, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(80, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(81, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(82, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(83, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(84, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(85, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(86, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(87, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(88, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(89, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(90, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(91, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(92, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(93, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(94, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(95, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123'),
-(96, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', '123');
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco_produto`, `quantidade_produto`, `fk_id_cores`, `fk_id_categorias`, `imagem`, `descricao`, `cpf`) VALUES
+(101, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(102, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(103, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(104, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(105, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(106, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(107, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(108, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(109, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(110, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(111, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(112, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(113, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(114, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(115, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(116, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(117, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(118, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(119, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(120, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(121, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(122, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(123, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(124, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(125, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(126, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(127, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(128, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(129, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(130, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(131, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(132, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(133, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(134, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(135, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(136, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(137, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(138, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(139, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(140, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(141, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(142, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(143, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '321.231.232-11'),
+(144, 'lápis', 2.50, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '123.456.789-10'),
+(145, 'lápis', 123.00, '123', 2, 2, 'img/Sem título.png', 'lápis escolar', '123.456.789-10'),
+(146, 'bozo', 7872.00, '1', 2, 2, 'img/caminhoneiro4.jpg', 'oeo', '887.438.870-43');
 
 --
 -- Índices para tabelas despejadas
@@ -247,7 +267,8 @@ ALTER TABLE `historico`
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`id_produto`),
   ADD KEY `fk_id_cores` (`fk_id_cores`),
-  ADD KEY `fk_id_categorias` (`fk_id_categorias`);
+  ADD KEY `fk_id_categorias` (`fk_id_categorias`),
+  ADD KEY `fk_produto_cliente` (`cpf`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -257,13 +278,13 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de tabela `carrinho_produtos`
 --
 ALTER TABLE `carrinho_produtos`
-  MODIFY `id_carrinho_produtos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_carrinho_produtos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -281,13 +302,13 @@ ALTER TABLE `cores`
 -- AUTO_INCREMENT de tabela `historico`
 --
 ALTER TABLE `historico`
-  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- Restrições para tabelas despejadas
@@ -317,6 +338,7 @@ ALTER TABLE `historico`
 -- Restrições para tabelas `produto`
 --
 ALTER TABLE `produto`
+  ADD CONSTRAINT `fk_produto_cliente` FOREIGN KEY (`cpf`) REFERENCES `cliente` (`cpf`),
   ADD CONSTRAINT `pk_id_categorias` FOREIGN KEY (`fk_id_categorias`) REFERENCES `categorias` (`id_categorias`),
   ADD CONSTRAINT `pk_id_cores` FOREIGN KEY (`fk_id_cores`) REFERENCES `cores` (`id_cores`);
 COMMIT;

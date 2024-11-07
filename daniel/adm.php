@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,6 +32,9 @@
                 </a>
                 </div>
     <div class="login">
+   
+    
+    <button><a href="criar_conta.php">criar conta</a></button>
     <?php 
     
     if (empty($_SESSION['cpf'])) {
@@ -39,8 +43,6 @@
         echo "<li style='float: left;'><a href='sair.php' class='btn btn-danger me-5'><h3>Sair</h3></a></li>";
     }
     ?>
-    
-    <button><a href="criar_conta.php">criar conta</a></button>
         <div class="carrinho">
     <a href="carrinho.php">
         <img src="img/carrinho.png" alt="Google (Noto Color Emoji - Unicode 15.1)" id="img2">

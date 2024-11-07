@@ -1,4 +1,53 @@
-<?php
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: hsl(219, 54%, 33%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #20206b94;
+        }
+
+        tr:hover {
+            background-color: #554747;
+        }
+
+        td form {
+            display: inline-block;
+        }
+
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+
+        .finalizar-compra-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header> 
+    <div class="menu">
+        <div>
+            <a href="index.php">
+                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
+            </a>
+        </div>        <?php
 session_start();
 // Adiciona produto ao carrinho
 if (empty($_SESSION['cpf'])) {
@@ -51,58 +100,8 @@ if (isset($_POST['remove_item'])) {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrinho de Compras</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: hsl(219, 54%, 33%);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #20206b94;
-        }
-
-        tr:hover {
-            background-color: #554747;
-        }
-
-        td form {
-            display: inline-block;
-        }
-
-        .remove-btn:hover {
-            background-color: #c82333;
-        }
-
-        .finalizar-compra-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-<header> 
-    <div class="menu">
-        <div>
-            <a href="index.php">
-                <li><img src="img/logo.png" class="imglogo" id="img1"></li>
-            </a>
-        </div>
         <div class="login">
+
             <?php 
             if (empty($_SESSION['cpf'])) {
                 echo "<button><a href='login.php'>login</a></button>";

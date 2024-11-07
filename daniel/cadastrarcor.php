@@ -1,27 +1,3 @@
-<?php
-include_once('config.php');
-if (isset($_POST['submit'])) {
-
-    $nome = $_POST['opcoes_cores'];
-
-
-    if ($nome) {
-        $stmt = $conexao->prepare("INSERT INTO cores (opcoes_cores) VALUES (?)");
-        $stmt->bind_param("s", $nome);
-
-        // Executando a query
-        if ($stmt->execute()) {
-            echo "Cor cadastrado com sucesso";
-        } else {
-            echo "Erro ao inserir cor: " . $stmt->error;
-        }
-
-        $stmt->close();
-    }
-
-    $conexao->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,6 +24,31 @@ if (isset($_POST['submit'])) {
             <label for="opcoes_cores">Nome da cor:</label>
             <input type="text" name="opcoes_cores" placeholder="Nome da cor" autofocus="true" required>
             <input type="submit" name="submit" id="submit"></input><br>
+<?php
+        include_once('config.php');
+    if (isset($_POST['submit'])) {
+
+    $nome = $_POST['opcoes_cores'];
+
+
+    if ($nome) {
+        $stmt = $conexao->prepare("INSERT INTO cores (opcoes_cores) VALUES (?)");
+        $stmt->bind_param("s", $nome);
+
+        // Executando a query
+        if ($stmt->execute()) {
+            echo "Cor cadastrado com sucesso <br>";
+        } else {
+            echo "Erro ao inserir cor: ";
+        }
+
+        $stmt->close();
+    }
+
+    $conexao->close();
+    }
+?>
+
             <a href="index.php">voltar para a página principal</a><br>
             <a href="cadastro_produto.php">cadastrar produto</a><br>
             <a href="cadastrarcategoria.php">cadastrar uma categoria</a>

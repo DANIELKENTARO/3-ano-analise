@@ -34,6 +34,11 @@
             <label for="cor">Cores:</label>
             <select list="cor" name="cor" placeholder="cor">
 <?php
+session_start();
+if (empty($_SESSION['cpf'])) {
+    header("location: login.php");
+    exit();
+}
                     $row ="";
                     include_once('config.php');
                     $sql1 = "SELECT * FROM `cores`";
@@ -107,8 +112,8 @@
         }
 
         if ($imagem_path) {
-            $stmt = $conexao->prepare("INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssss", $nome, $preco, $quantidade, $cor, $categoria, $imagem_path, $descricao);
+            $stmt = $conexao->prepare("INSERT INTO produto (nome_produto, preco_produto, quantidade_produto, fk_id_cores, fk_id_categorias, imagem, descricao, cpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $nome, $preco, $quantidade, $cor, $categoria, $imagem_path, $descricao, $_SESSION['cpf']);
 
             // Executando a query
             if ($stmt->execute()) {

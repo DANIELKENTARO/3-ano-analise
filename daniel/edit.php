@@ -49,22 +49,17 @@ if (isset($_GET['cpf'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            background: url(imagem.jpg);
-            background-size: 600px;
-             background-repeat: no-repeat;
-             background-position-x: center;
+            background-color: lightgray;
         }
         h1{
             text-align: center;
         }
         header{
-            background-color: palevioletred;
              padding: 10px 0;
             text-align: center;
             }
@@ -86,16 +81,12 @@ if (isset($_GET['cpf'])) {
         }
 
         input[type="submit"] {
-            background-color: #45e05f;
             color: white;
             cursor: pointer;
         }
 
-        input[type="submit"]:hover {
-            background-color: #435dd1;
-        }
         header{
-        background-color: palevioletred;
+        background-color: gray;
         padding: 10px 0;
         text-align: center;
         }

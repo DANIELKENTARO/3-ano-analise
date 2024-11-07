@@ -32,14 +32,14 @@
            
             <div class="formulario_input">
             <label for="Email">E-mail:</label>
-            <input type="email" name="email" placeholder="digite seu email" maxlength="80" require>
+            <input type="email" name="email" placeholder="digite seu email"  autocomplete="off" maxlength="80" require>
             <label for="cep">Cep:</label>
             <input type="text" name="cep" placeholder="digite seu cep" onkeyup="handleZipCode(event)" maxlength="9">
             </div>
           
             <div class="formulario_input">
             <label for="password">Senha:</label>
-            <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" required>
+            <input type="password" name="senha" placeholder="crie uma senha" min="8" max="80" autocomplete="off" required>
             <select list="tipo" name="tipo" id="0">
                 <option name="tipo" value="0">cliente</option>
                 <option name="tipo" value="2">vendedor</option>
